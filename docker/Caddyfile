@@ -1,0 +1,20 @@
+:5200 {
+  encode gzip zstd
+
+  @api path /api/*
+  handle @api {
+    reverse_proxy api:5201
+  }
+
+  handle {
+    root * /srv
+    try_files {path} /index.html
+    file_server
+  }
+
+  header {
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    Referrer-Policy strict-origin-when-cross-origin
+  }
+}

@@ -1,0 +1,45 @@
+services:
+  api:
+    container_name: home-tanian-api
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: home-tanian-api:stable
+    restart: unless-stopped
+    environment:
+      BACKEND_ALLOWED_ORIGINS: https://home.tanian.net,http://localhost:5200,http://127.0.0.1:5200,http://localhost:5202,http://127.0.0.1:5202
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5201/api/health', timeout=2)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    ports:
+      - "5201:5201"
+    networks:
+      - home_tanian_net
+
+  web:
+    container_name: home-tanian-web
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: home-tanian-web:stable
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - "5200:5200"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5200/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - home_tanian_net
+
+networks:
+  home_tanian_net:
+    driver: bridge
