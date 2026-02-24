@@ -90,35 +90,49 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
 
         <div className="relative">
           {/* Header bar */}
-          <div className="flex items-center justify-between border-b border-slate-800/60 px-6 py-4 sm:px-8">
-            <div className="flex items-center gap-3">
+          <div className="relative flex items-center flex-wrap justify-between border-b border-slate-800/60 px-6 py-4 sm:px-8">
+            {/* Category (Left) */}
+            <div className="flex-1">
               <span className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${accent.badge}`}>
                 {categoryLabels[app.category]}
               </span>
-              <h3 className="text-xl font-bold text-white sm:text-2xl">{app.name}</h3>
             </div>
-            <span className="inline-flex items-center gap-2 text-sm">
-              <span
-                aria-hidden="true"
-                className={`h-2.5 w-2.5 rounded-full ${isOnline ? 'bg-emerald-400 status-online' : 'bg-slate-500'}`}
-              />
-              <span className={isOnline ? 'text-emerald-400' : 'text-slate-500'}>
-                {isOnline ? 'Online' : 'Offline'}
+
+            {/* Centered Name (Center) */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block">
+              <h3 className="text-xl font-bold text-white sm:text-2xl whitespace-nowrap">{app.name}</h3>
+            </div>
+
+            {/* Mobile Name (Alternative) */}
+            <div className="md:hidden w-full order-3 mt-2 text-center">
+              <h3 className="text-xl font-bold text-white">{app.name}</h3>
+            </div>
+
+            {/* Status (Right) */}
+            <div className="flex flex-1 justify-end">
+              <span className="inline-flex items-center gap-2 text-sm">
+                <span
+                  aria-hidden="true"
+                  className={`h-2.5 w-2.5 rounded-full ${isOnline ? 'bg-emerald-400 status-online' : 'bg-slate-500'}`}
+                />
+                <span className={isOnline ? 'text-emerald-400' : 'text-slate-500'}>
+                  {isOnline ? 'Online' : 'Offline'}
+                </span>
               </span>
-            </span>
+            </div>
           </div>
 
-          {/* Content grid: image + description side by side on large screens, stacked on mobile */}
+          {/* Content grid: image + abstract side by side on large screens, stacked on mobile */}
           <div className="flex flex-col lg:flex-row">
             {/* Image section */}
-            <div className="relative lg:w-1/2">
-              <div className="relative aspect-video overflow-hidden bg-slate-950/75 lg:aspect-auto lg:h-full">
+            <div className="relative border-b border-slate-800/60 lg:w-1/2 lg:border-b-0 lg:border-r">
+              <div className="relative flex items-center justify-center aspect-video overflow-hidden bg-slate-950/75 p-6 lg:aspect-auto lg:h-full">
                 {resolvedImageUrl ? (
                   <>
                     <img
                       src={resolvedImageUrl}
                       alt={app.name}
-                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      className="max-h-full max-w-full rounded-lg object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                     {/* Overlay hover para ampliar */}
                     <motion.button
@@ -141,12 +155,12 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
               </div>
             </div>
 
-            {/* Description section */}
+            {/* Highlights section */}
             <div className="flex flex-col justify-between p-6 sm:p-8 lg:w-1/2">
-              {/* Full description */}
+              {/* Short description */}
               <div>
                 <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
-                  {app.description}
+                  {app.short_description || app.description.substring(0, 100) + '...'}
                 </p>
 
                 {/* Key highlights */}
@@ -194,6 +208,27 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                     </button>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Full description zone */}
+          <div className="border-t border-slate-800/60 bg-slate-900/40 p-6 sm:p-8">
+            <div className="w-full">
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-cyan-400">
+                Sobre esta solución
+              </h4>
+              <div className="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
+                {app.description.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="text-slate-300">
+                    {paragraph.split(/(\*\*.*?\*\*)/g).map((part, i) => {
+                      if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={i} className="text-white font-semibold font-inherit">{part.slice(2, -2)}</strong>;
+                      }
+                      return part;
+                    })}
+                  </p>
+                ))}
               </div>
             </div>
           </div>

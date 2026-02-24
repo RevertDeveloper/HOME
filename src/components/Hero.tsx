@@ -9,7 +9,7 @@ const floatingIcons = [
 
 export function Hero({ onExplore }: { onExplore: () => void }) {
   return (
-    <section className="relative overflow-hidden px-6 pt-28 pb-24 sm:px-10 lg:px-14">
+    <section className="relative overflow-hidden px-6 pt-10 pb-24 sm:px-10 lg:px-14">
       {/* Floating decorative icons */}
       {floatingIcons.map(({ Icon, x, y, delay, size }, i) => (
         <motion.div
@@ -24,17 +24,6 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
       ))}
 
       <div className="mx-auto max-w-5xl text-center">
-        {/* Kicker */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 text-sm font-medium text-cyan-300"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
-          Software Industrial · IA · Trazabilidad
-        </motion.div>
-
         {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -53,10 +42,10 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.12 }}
-          className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+          className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-slate-400 sm:text-xl"
         >
           Analizamos los cuellos de botella de tu empresa y desarrollamos
-          herramientas a medida que <strong className="text-slate-200">multiplican tu productividad</strong>,
+          <strong className="text-slate-200"> herramientas a medida</strong> que <strong className="text-slate-200">multiplican tu productividad</strong>,
           mejoran la calidad y eliminan errores en cada paso del proceso.
         </motion.p>
 

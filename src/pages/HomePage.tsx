@@ -126,6 +126,16 @@ export function HomePage() {
           </div>
           <p className="text-sm font-semibold tracking-wide text-slate-200">Tanian</p>
         </div>
+
+        {/* Central Badge */}
+        <div className="pointer-events-none absolute inset-x-0 top-2 flex items-center justify-center pt-6 sm:pt-6">
+          <div className="pointer-events-auto hidden items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 text-[10px] font-medium tracking-wider uppercase text-cyan-300 sm:flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
+            Software Industrial · IA · Trazabilidad · BlockChain
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
+          </div>
+        </div>
+
         <div className="flex items-center gap-3">
           {isLoading ? (
             <div className="h-11 w-24 rounded-lg shimmer" />

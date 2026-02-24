@@ -4,6 +4,7 @@ export type AppStatus = 'online' | 'offline'
 export interface AppItem {
   id: string
   name: string
+  short_description?: string
   description: string
   tech: string[]
   url: string

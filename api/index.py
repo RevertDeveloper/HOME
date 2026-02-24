@@ -25,6 +25,7 @@ class AppStatus(str, Enum):
 class AppSchema(BaseModel):
     id: str
     name: str
+    short_description: str | None = None
     description: str
     tech: list[str]
     url: HttpUrl
@@ -46,15 +47,16 @@ class HealthResponse(BaseModel):
 MOCK_APPS: list[AppSchema] = [
     AppSchema(
         id="rag-juridico",
-        name="Asistente Jurídico IA",
+        name="Asistente Jurídico",
+        short_description="Plataforma avanzada de análisis de documentos y asistencia jurídica potenciada por inteligencia artificial.",
         description=(
-            "Un chat inteligente que responde preguntas sobre legislación española de forma instantánea. "
-            "Este sistema ejecuta un modelo de inteligencia artificial en nuestros servidores locales —sin depender de servicios externos— "
-            "y tiene acceso a toda la legislación consolidada del Boletín Oficial del Estado (BOE). "
-            "Cuando realizas una consulta, el sistema busca automáticamente en una base de datos vectorial los artículos más relevantes, "
-            "los analiza y genera una respuesta fundamentada exclusivamente en la legislación vigente. "
-            "Además, proporciona enlaces directos a la página oficial del BOE para que puedas verificar y profundizar en cada fuente citada. "
-            "Este sistema es totalmente personalizable: puede adaptarse a cualquier sector regulado "
+            "Un chat inteligente que responde preguntas sobre **legislación española** de **forma precisa y trazable**.\n\n"
+            "Este sistema ejecuta un modelo de inteligencia artificial en nuestros **servidores locales** —**sin depender de servicios externos**— "
+            "y tiene acceso a toda la legislación consolidada del **Boletín Oficial del Estado (BOE)**.\n\n"
+            "Cuando realizas una consulta, el sistema busca automáticamente en una **base de datos vectorial** los artículos más relevantes, "
+            "los analiza y genera una respuesta fundamentada exclusivamente en la **legislación vigente**. "
+            "Además, proporciona **enlaces directos** a la página oficial del BOE para que puedas verificar y profundizar en cada fuente citada.\n\n"
+            "Este sistema es **totalmente personalizable**: puede adaptarse a cualquier sector regulado "
             "(normativa fiscal, laboral, medioambiental, sanitaria…) y a cualquier empresa que necesite consultar legislación de forma rápida y fiable."
         ),
         tech=["IA Local", "RAG", "Base de Datos Vectorial", "Python", "FastAPI"],
@@ -66,17 +68,19 @@ MOCK_APPS: list[AppSchema] = [
     AppSchema(
         id="transcriptor",
         name="Transcriptor Inteligente",
+        short_description="Servicio de transcripción de audio a texto de alta precisión con segmentación y análisis de locutores.",
         description=(
-            "Una herramienta que convierte audio en texto y lo transforma automáticamente en informes útiles. "
+            "Una herramienta que convierte **audio en texto** y lo transforma automáticamente en **informes útiles**.\n\n"
             "Seleccionas un modo según el tipo de audio —reuniones, lluvia de ideas, tareas, desarrollo de software o sesiones de terapia— "
-            "y el sistema transcribe la grabación con alta precisión. Después, un modelo de IA procesa el texto según el modo elegido: "
-            "genera actas de reuniones, listas de tareas priorizadas, resúmenes de ideas o informes clínicos estructurados. "
+            "y el sistema transcribe la grabación con **alta precisión**.\n\n"
+            "Después, un modelo de IA procesa el texto según el modo elegido: "
+            "genera **actas de reuniones**, **listas de tareas priorizadas**, **resúmenes de ideas** o **informes clínicos estructurados**. "
             "El verdadero poder está en no perder nunca la información valiosa de una conversación: "
-            "cada palabra queda registrada, organizada y lista para compartir con personas ausentes o para futuras consultas. "
-            "Este sistema es adaptable a cualquier empresa: desde equipos que necesitan documentar sus reuniones, "
+            "cada palabra queda registrada, organizada y lista para compartir con personas ausentes o para futuras consultas.\n\n"
+            "Este sistema es **adaptable a cualquier empresa**: desde equipos que necesitan documentar sus reuniones, "
             "hasta clínicas que requieren historiales de sesiones o departamentos creativos que quieren capturar cada idea."
         ),
-        tech=["IA Local", "Speech-to-Text", "LLM", "React", "Python"],
+        tech=["IA Local", "Speech-to-Text", "LLM", "React", "Whisper"],
         url="https://voice.home.tanian.net/",
         category=AppCategory.ai,
         status=AppStatus.offline,
@@ -84,16 +88,17 @@ MOCK_APPS: list[AppSchema] = [
     ),
     AppSchema(
         id="chat-ia-local",
-        name="Chat IA Privado",
+        name="Chat IA Privada",
+        short_description="Interfaz de chat potente impulsada por modelos de inteligencia artificial ejecutados en servidores privados.",
         description=(
-            "Una interfaz de chat potente impulsada por modelos de inteligencia artificial que se ejecutan íntegramente en los servidores de tu empresa. "
-            "A diferencia de otros servicios como ChatGPT o Gemini, toda la información se procesa en local: "
-            "ningún dato sale de tus instalaciones, lo que garantiza la privacidad total y la soberanía de tus datos. "
+            "Una interfaz de chat potente impulsada por modelos de inteligencia artificial que se ejecutan íntegramente en los **servidores de tu empresa**.\n\n"
+            "A diferencia de otros servicios como ChatGPT o Gemini, toda la información se **procesa en local**: "
+            "ningún dato sale de tus instalaciones, lo que garantiza la **privacidad total** y la **soberanía de tus datos**. "
             "Es la forma segura de impulsar la productividad de tus empleados con IA, sin el riesgo de filtrar información confidencial "
-            "sobre clientes, proyectos o estrategias de negocio. TODO SE QUEDA EN CASA. "
-            "Estos modelos se pueden equipar con herramientas personalizadas: acceso a bases de datos internas, "
-            "generación de documentos, análisis de datos, automatización de tareas y mucho más. "
-            "Es ideal para cualquier empresa que quiera usar inteligencia artificial avanzada con total control sobre su información."
+            "sobre clientes, proyectos o estrategias de negocio. **TODO SE QUEDA EN CASA**.\n\n"
+            "Estos modelos se pueden equipar con herramientas personalizadas: acceso a **bases de datos internas**, "
+            "generación de documentos, análisis de datos, **automatización de tareas** y mucho más.\n\n"
+            "Es ideal para cualquier empresa que quiera usar inteligencia artificial avanzada con **total control** sobre su información."
         ),
         tech=["IA Local", "LLM", "React", "TypeScript", "API Privada"],
         url="https://chat.dev.tanian.net/auth?redirect=%2F",
