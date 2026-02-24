@@ -18,15 +18,19 @@ export function getKeycloak() {
   return keycloak
 }
 
+let initPromise: Promise<{ instance: Keycloak; isAuthenticated: boolean }> | null = null
+
 export async function initKeycloak() {
   const instance = getKeycloak()
-  const isAuthenticated = await instance.init({
-    onLoad: 'check-sso',
-    pkceMethod: 'S256',
-    checkLoginIframe: false,
-    redirectUri: window.location.origin,
-    silentCheckSsoRedirectUri: `${window.location.origin}/silent-check-sso.html`,
-  })
 
-  return { instance, isAuthenticated }
+  if (!initPromise) {
+    initPromise = instance.init({
+      onLoad: 'check-sso',
+      pkceMethod: 'S256',
+      checkLoginIframe: false,
+      redirectUri: window.location.origin,
+    }).then((isAuthenticated) => ({ instance, isAuthenticated }))
+  }
+
+  return initPromise
 }

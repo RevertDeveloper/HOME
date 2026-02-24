@@ -3,9 +3,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, LockKeyhole, ZoomIn, X } from 'lucide-react'
 import type { AppItem } from '../types/app.ts'
 
+// Importar imágenes locales para asegurar que Vite las procese y hashee para producción
+import ragJuridicoImg from '../assets/rag-juridico.png'
+import transcriptorImg from '../assets/transcriptor.png'
+import chatIaLocalImg from '../assets/chat-ia-local.png'
+
+const localImages: Record<string, string> = {
+  '/assets/rag-juridico.png': ragJuridicoImg,
+  '/assets/transcriptor.png': transcriptorImg,
+  '/assets/chat-ia-local.png': chatIaLocalImg,
+}
+
 interface AppCardProps {
   app: AppItem
   isAuthenticated: boolean
+  isLoading?: boolean
   onLogin: (url: string) => void
 }
 
@@ -15,9 +27,12 @@ const categoryStyles: Record<AppItem['category'], string> = {
   enterprise: 'border-amber-300/30 shadow-amber-400/20',
 }
 
-export function AppCard({ app, isAuthenticated, onLogin }: AppCardProps) {
+export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: AppCardProps) {
   const isOnline = app.status === 'online'
   const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  // Usar la imagen importada si existe el mapeo, de lo contrario usar el URL tal cual
+  const resolvedImageUrl = (app.image_url && localImages[app.image_url]) || app.image_url
 
   return (
     <>
@@ -43,10 +58,10 @@ export function AppCard({ app, isAuthenticated, onLogin }: AppCardProps) {
 
           {/* Imagen / preview */}
           <div className="relative mt-4 aspect-video overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-950/75">
-            {app.image_url ? (
+            {resolvedImageUrl ? (
               <>
                 <img
-                  src={app.image_url}
+                  src={resolvedImageUrl}
                   alt={app.name}
                   className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-110"
                 />
@@ -80,14 +95,14 @@ export function AppCard({ app, isAuthenticated, onLogin }: AppCardProps) {
           </ul>
 
           <div className="mt-6">
-            {isAuthenticated ? (
+            {isLoading ? (
+              <div className="h-12 w-36 animate-pulse rounded-xl bg-slate-800" />
+            ) : isAuthenticated ? (
               <a
                 href={app.url}
-                target="_blank"
-                rel="noreferrer"
                 className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-cyan-500 px-5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
               >
-                Launch App
+                Abrir Web
                 <ExternalLink aria-hidden="true" className="h-4 w-4" />
               </a>
             ) : (
@@ -106,7 +121,7 @@ export function AppCard({ app, isAuthenticated, onLogin }: AppCardProps) {
 
       {/* Lightbox */}
       <AnimatePresence>
-        {lightboxOpen && app.image_url && (
+        {lightboxOpen && resolvedImageUrl && (
           <motion.div
             key="lightbox"
             initial={{ opacity: 0 }}
@@ -125,7 +140,7 @@ export function AppCard({ app, isAuthenticated, onLogin }: AppCardProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={app.image_url}
+                src={resolvedImageUrl}
                 alt={`${app.name} – vista ampliada`}
                 className="block max-h-[90vh] max-w-[95vw] object-contain"
               />

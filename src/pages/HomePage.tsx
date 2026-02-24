@@ -59,7 +59,9 @@ export function HomePage() {
       <header className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-14">
         <p className="text-sm font-medium text-slate-300">home.tanian.net</p>
         <div className="flex items-center gap-3">
-          {!isLoading && isAuthenticated && userName ? (
+          {isLoading ? (
+            <div className="h-11 w-24 animate-pulse rounded-lg bg-slate-800" />
+          ) : isAuthenticated && userName ? (
             <>
               <span className="text-sm text-slate-300">{userName}</span>
               <button
@@ -118,7 +120,7 @@ export function HomePage() {
           {appsError ? <p className="mt-6 text-rose-300">{appsError}</p> : null}
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
             {apps.map((app) => (
-              <AppCard key={app.id} app={app} isAuthenticated={isAuthenticated} onLogin={(url) => login(url)} />
+              <AppCard key={app.id} app={app} isAuthenticated={isAuthenticated} isLoading={isLoading} onLogin={(url) => login(url)} />
             ))}
           </div>
         </div>
