@@ -46,6 +46,25 @@ class HealthResponse(BaseModel):
 
 MOCK_APPS: list[AppSchema] = [
     AppSchema(
+        id="nc-elevacion",
+        name="NcElevación",
+        short_description="Web avanzada de venta de carretillas elevadoras CLARK con navegación autónoma impulsada por IA.",
+        description=(
+            "**NcElevación** es una plataforma de venta online tecnológicamente diferencial, diseñada como distribuidor oficial de la prestigiosa marca **CLARK**.\n\n"
+            "Más allá de ofrecer catálogos interactivos y comparadores avanzados de maquinaria, esta web integra un **asistente virtual (RAG)** de última generación "
+            "que conoce en profundidad cada detalle de la empresa y las especificaciones técnicas de todos los productos del catálogo.\n\n"
+            "El mayor salto tecnológico es su **sistema de navegación inteligente**: la IA no solo responde, sino que detecta la verdadera necesidad del cliente y "
+            "tiene la capacidad de **navegar por la web en nombre del usuario**. Esto puede hacerse pidiendo permiso de forma interactiva (modo asistente) "
+            "o ejecutando acciones completas hasta encontrar el producto ideal (modo autónomo).\n\n"
+            "Un salto hacia el futuro del B2B y la venta industrial, donde la tecnología local se pone al completo servicio del usuario final."
+        ),
+        tech=["IA Autónoma", "RAG", "Catálogo Inteligente", "Asistente Virtual", "Agentes Reactivos"],
+        url="https://ncelevacion.dev.tanian.net/",
+        category=AppCategory.enterprise,
+        status=AppStatus.online,
+        image_url="/assets/nc-elevacion.png",
+    ),
+    AppSchema(
         id="rag-juridico",
         name="Asistente Jurídico",
         short_description="Plataforma avanzada de análisis de documentos y asistencia jurídica potenciada por inteligencia artificial.",
@@ -115,7 +134,7 @@ allowed_origins = [
     origin.strip()
     for origin in os.getenv(
         "BACKEND_ALLOWED_ORIGINS",
-        "http://localhost:5200,http://127.0.0.1:5200,http://localhost:5202,http://127.0.0.1:5202,https://home.tanian.net",
+        "http://localhost:5200,http://127.0.0.1:5200,http://localhost:5202,https://www.gca-labs.com,http://127.0.0.1:5202,https://home.tanian.net",
     ).split(",")
     if origin.strip()
 ]

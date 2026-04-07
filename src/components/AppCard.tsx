@@ -7,11 +7,13 @@ import type { AppItem } from '../types/app.ts'
 import ragJuridicoImg from '../assets/rag-juridico.png'
 import transcriptorImg from '../assets/transcriptor.png'
 import chatIaLocalImg from '../assets/chat-ia-local.png'
+import ncElevacionImg from '../assets/nc-elevacion.png'
 
 const localImages: Record<string, string> = {
   '/assets/rag-juridico.png': ragJuridicoImg,
   '/assets/transcriptor.png': transcriptorImg,
   '/assets/chat-ia-local.png': chatIaLocalImg,
+  '/assets/nc-elevacion.png': ncElevacionImg,
 }
 
 interface AppCardProps {
@@ -64,6 +66,12 @@ const appHighlights: Record<string, string[]> = {
     'Compatible con herramientas personalizadas',
     'Alternativa segura a ChatGPT para empresas',
     'Escalable con nuevos modelos y funcionalidades',
+  ],
+  'nc-elevacion': [
+    'Navegación web autónoma impulsada por IA',
+    'Catálogo inteligente de maquinaria CLARK',
+    'Asistente virtual RAG integrado (conoce toda la empresa)',
+    'Interacción proactiva y personalizada',
   ],
 }
 

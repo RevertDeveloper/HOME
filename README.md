@@ -15,7 +15,7 @@ Usa `.env.example` como base:
 - `VITE_KEYCLOAK_URL`
 - `VITE_KEYCLOAK_REALM`
 - `VITE_KEYCLOAK_CLIENT_ID`
-- `VITE_API_BASE_URL`
+- `VITE_API_BASE_URL` (`https://home.tanian.net` cuando el frontend se sirve desde otro dominio)
 - `BACKEND_ALLOWED_ORIGINS`
 
 ## Desarrollo local
@@ -27,17 +27,14 @@ bun install
 bun run dev
 ```
 
-Panel interactivo recomendado:
+Comandos rápidos con `make`:
 
 ```bash
-chmod +x run.sh
-./run.sh
+make up
+make down
+make rebuild
+make dev
 ```
-
-Incluye opciones para:
-- levantar/parar/reconstruir Docker en producción
-- levantar/parar Vite dev en puerto `5202`
-- ver logs y estado de ambos entornos
 
 Backend (puerto `5201`):
 

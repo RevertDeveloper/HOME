@@ -97,7 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         void getKeycloak().login({ redirectUri: redirectUri ?? window.location.href })
       },
       logout: () => {
-        void getKeycloak().logout({ redirectUri: 'https://home.tanian.net' })
+        void getKeycloak().logout({ redirectUri: window.location.origin })
       },
     }),
     [auth.initialized, auth.isAuthenticated, auth.userName],

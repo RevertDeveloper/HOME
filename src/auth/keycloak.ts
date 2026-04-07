@@ -1,6 +1,7 @@
 import Keycloak from 'keycloak-js'
 
 let keycloak: Keycloak | null = null
+const KEYCLOAK_INIT_TIMEOUT_MS = 8000
 
 function buildConfig() {
   return {
@@ -24,12 +25,22 @@ export async function initKeycloak() {
   const instance = getKeycloak()
 
   if (!initPromise) {
-    initPromise = instance.init({
-      onLoad: 'check-sso',
-      pkceMethod: 'S256',
-      checkLoginIframe: false,
-      redirectUri: window.location.origin,
-    }).then((isAuthenticated) => ({ instance, isAuthenticated }))
+    const initRequest = instance
+      .init({
+        onLoad: 'check-sso',
+        pkceMethod: 'S256',
+        checkLoginIframe: false,
+        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
+      })
+      .then((isAuthenticated) => ({ instance, isAuthenticated }))
+
+    const timeoutRequest = new Promise<{ instance: Keycloak; isAuthenticated: boolean }>((_, reject) => {
+      window.setTimeout(() => {
+        reject(new Error('Keycloak initialization timed out'))
+      }, KEYCLOAK_INIT_TIMEOUT_MS)
+    })
+
+    initPromise = Promise.race([initRequest, timeoutRequest])
   }
 
   return initPromise
