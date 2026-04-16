@@ -115,13 +115,13 @@ export function HomePage() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
       {/* Ambient background gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(6,182,212,0.12),transparent_50%),radial-gradient(ellipse_at_80%_20%,_rgba(139,92,246,0.1),transparent_45%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,_rgba(6,182,212,0.06),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.12),transparent_50%),radial-gradient(ellipse_at_80%_20%,rgba(139,92,246,0.1),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(6,182,212,0.06),transparent_50%)]" />
 
       {/* ── Header ── */}
       <header className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-14">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-400">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500 to-cyan-400">
             <Layers className="h-4 w-4 text-slate-950" />
           </div>
           <p className="text-sm font-semibold tracking-wide text-slate-200">Tanian</p>
@@ -322,7 +322,7 @@ export function HomePage() {
                 transition={{ duration: 0.4, delay: index * 0.08 }}
                 className="group relative overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/40 p-6 backdrop-blur transition-all duration-300 hover:border-slate-700/80"
               >
-                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${cap.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+                <div className={`pointer-events-none absolute inset-0 bg-linear-to-br ${cap.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
                 <div className="relative">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700/60 bg-slate-800/80">
@@ -356,7 +356,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
-            className="overflow-hidden rounded-3xl border border-cyan-500/15 bg-gradient-to-br from-cyan-500/5 via-slate-900/60 to-violet-500/5 p-8 backdrop-blur sm:p-12"
+            className="overflow-hidden rounded-3xl border border-cyan-500/15 bg-linear-to-br from-cyan-500/5 via-slate-900/60 to-violet-500/5 p-8 backdrop-blur sm:p-12"
           >
             <div className="mx-auto max-w-3xl text-center">
               <Server className="mx-auto h-10 w-10 text-cyan-400" aria-hidden="true" />
@@ -425,7 +425,7 @@ export function HomePage() {
       <footer className="relative z-10 border-t border-slate-800/60 px-6 py-10 sm:px-10 lg:px-14">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 sm:flex-row sm:justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-400">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500 to-cyan-400">
               <Layers className="h-3.5 w-3.5 text-slate-950" />
             </div>
             <span className="text-sm font-semibold text-slate-300">Tanian</span>

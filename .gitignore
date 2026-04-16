@@ -1,4 +1,20 @@
-# Logs
+# Secretos y variables de entorno
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+secrets/
+.secrets/
+
+# Registros
 logs
 *.log
 npm-debug.log*
@@ -7,17 +23,30 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencias y artefactos de compilación
 node_modules
 dist
 dist-ssr
+coverage
+htmlcov
+.vite
+.turbo
+.cache
+.vercel
 *.local
-.env
 .venv/
 __pycache__/
 *.pyc
+*.tsbuildinfo
 .run/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.ipynb_checkpoints/
 
-# Editor directories and files
+# Archivos del editor y del sistema
 .vscode/*
 !.vscode/extensions.json
 .idea
