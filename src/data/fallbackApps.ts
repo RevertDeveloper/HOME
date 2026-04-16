@@ -8,10 +8,10 @@ export const fallbackApps: AppItem[] = [
     description:
       '**NcElevación** es una plataforma de venta online tecnológicamente diferencial, diseñada como distribuidor oficial de la prestigiosa marca **CLARK**.\n\nMás allá de ofrecer catálogos interactivos y comparadores avanzados de maquinaria, esta web integra un **asistente virtual (RAG)** de última generación que conoce en profundidad cada detalle de la empresa y las especificaciones técnicas de todos los productos del catálogo.\n\nEl mayor salto tecnológico es su **sistema de navegación inteligente**: la IA no solo responde, sino que detecta la verdadera necesidad del cliente y tiene la capacidad de **navegar por la web en nombre del usuario**. Esto puede hacerse pidiendo permiso de forma interactiva (modo asistente) o ejecutando acciones completas hasta encontrar el producto ideal (modo autónomo).\n\nUn salto hacia el futuro del B2B y la venta industrial, donde la tecnología local se pone al completo servicio del usuario final.',
     tech: ['IA Autónoma', 'RAG', 'Catálogo Inteligente', 'Asistente Virtual', 'Agentes Reactivos'],
-    url: 'https://ncelevacion.dev.tanian.net/',
+    url: 'https://ncelevacion.com/',
     category: 'enterprise',
     image_url: '/assets/nc-elevacion.png',
-    status: 'offline',
+    status: 'online',
   },
   {
     id: 'rag-juridico',

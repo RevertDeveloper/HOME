@@ -26,7 +26,7 @@ interface AppCardProps {
 const categoryLabels: Record<AppItem['category'], string> = {
   ai: 'Inteligencia Artificial',
   blockchain: 'Blockchain',
-  enterprise: 'Empresarial',
+  enterprise: 'Web Comercial',
 }
 
 const categoryAccents: Record<AppItem['category'], { border: string; badge: string; glow: string }> = {
@@ -94,7 +94,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
         className={`group relative overflow-hidden rounded-3xl border bg-slate-900/40 backdrop-blur-sm transition-all duration-500 ${accent.border}`}
       >
         {/* Ambient glow */}
-        <div className={`pointer-events-none absolute -inset-24 bg-gradient-to-br ${accent.glow} opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-100`} />
+        <div className={`pointer-events-none absolute -inset-24 bg-linear-to-br ${accent.glow} opacity-60 blur-3xl transition-opacity duration-500 group-hover:opacity-100`} />
 
         <div className="relative">
           {/* Header bar */}
@@ -158,7 +158,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                     </motion.button>
                   </>
                 ) : (
-                  <div className="h-full min-h-[200px] w-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950" />
+                  <div className="h-full min-h-50 w-full bg-linear-to-br from-slate-800 via-slate-900 to-slate-950" />
                 )}
               </div>
             </div>
@@ -200,7 +200,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                   ) : isAuthenticated ? (
                     <a
                       href={app.url}
-                      className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-400 px-6 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/40 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                      className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-linear-to-r from-cyan-500 to-cyan-400 px-6 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/40 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
                     >
                       Acceder a la aplicación
                       <ExternalLink aria-hidden="true" className="h-4 w-4" />

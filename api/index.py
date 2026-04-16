@@ -59,7 +59,7 @@ MOCK_APPS: list[AppSchema] = [
             "Un salto hacia el futuro del B2B y la venta industrial, donde la tecnología local se pone al completo servicio del usuario final."
         ),
         tech=["IA Autónoma", "RAG", "Catálogo Inteligente", "Asistente Virtual", "Agentes Reactivos"],
-        url="https://ncelevacion.dev.tanian.net/",
+        url="https://ncelevacion.com/",
         category=AppCategory.enterprise,
         status=AppStatus.online,
         image_url="/assets/nc-elevacion.png",
