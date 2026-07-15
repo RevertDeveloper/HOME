@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "dev:api": "cd api && uvicorn index:app --reload --port 5201",
+    "dev:api": "cd api && uvicorn index:app --reload --port 10001",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --host 0.0.0.0 --port 5200 --strictPort"
+    "preview": "vite preview --host 0.0.0.0 --port 10000 --strictPort"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

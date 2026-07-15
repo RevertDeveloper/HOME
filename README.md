@@ -1,6 +1,6 @@
 # Home Tanian
 
-[![Web](https://img.shields.io/badge/web-home.tanian.net-06b6d4?style=for-the-badge)](https://home.tanian.net)
+[![Web](https://img.shields.io/badge/web-carlosrevert.es-06b6d4?style=for-the-badge)](https://carlosrevert.es)
 [![Status](https://img.shields.io/badge/status-status.tanian.net-16a34a?style=for-the-badge)](https://status.tanian.net)
 ![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
@@ -8,6 +8,16 @@
 ![Keycloak](https://img.shields.io/badge/Auth-Keycloak-4a5568?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Deploy-Docker%20%7C%20Vercel-2496ed?style=for-the-badge&logo=docker&logoColor=white)
 ![License](https://img.shields.io/badge/license-pending-lightgrey?style=for-the-badge)
+
+## Proyectos públicos
+
+Explora las instancias públicas del ecosistema Tanian. Haz clic en cada proyecto para visitarlo:
+
+- [Home](https://carlosrevert.es) — Portal principal y catálogo.
+- [NcElevación](https://ncelevacion.com) — Plataforma comercial de carretillas elevadoras CLARK.
+- [ia.tanian](https://ia.tanian.net) — Rag Jurídico basado en la legislación consolidada con redirección a fuentes oficiales.
+- [Transcriptor](https://voice.home.tanian.net/) — Servicio de transcripción inteligente con informes.
+- [OpenWebUI](https://chat.dev.tanian.net/) — Interfaz OpenWebUI Local
 
 > Portal central del ecosistema Tanian para presentar soluciones reales de inteligencia artificial, trazabilidad, blockchain e infraestructura privada.
 
@@ -25,7 +35,7 @@ bun install
 make rebuild
 ```
 
-Con eso levantas el stack Docker completo con frontend en el puerto `5200` y API en el puerto `5201`.
+Con eso levantas el stack Docker completo con frontend en el puerto `10000` y API en el puerto `10001`.
 
 ### Comandos principales
 
@@ -34,20 +44,20 @@ Con eso levantas el stack Docker completo con frontend en el puerto `5200` y API
 | `make up` | Arranca los contenedores existentes en segundo plano. |
 | `make down` | Detiene y elimina los contenedores del stack local. |
 | `make rebuild` | Reconstruye imágenes y levanta frontend + API desde cero. |
-| `make dev` | Lanza el frontend con Vite en el puerto `5202`, útil si Docker ya está ocupando `5200`. |
-| `bun run dev` | Ejecuta el frontend en local con Vite en `0.0.0.0:5200`. |
+| `make dev` | Lanza el frontend con Vite en el puerto `10002`, útil si Docker ya está ocupando `10000`. |
+| `bun run dev` | Ejecuta el frontend en local con Vite en `0.0.0.0:10000`. |
 | `bun run build` | Genera el build de producción del frontend. |
 | `bun run lint` | Ejecuta ESLint sobre el frontend. |
-| `bun run preview` | Sirve el build compilado del frontend en `5200`. |
-| `bun run dev:api` | Lanza la API FastAPI en local sobre el puerto `5201`. |
+| `bun run preview` | Sirve el build compilado del frontend en `10000`. |
+| `bun run dev:api` | Lanza la API FastAPI en local sobre el puerto `10001`. |
 
 ### Puertos del proyecto
 
 | Servicio | Puerto | Uso |
 | --- | --- | --- |
-| Frontend Vite | `5200` | Desarrollo local principal. |
+| Frontend Vite | `10000` | Desarrollo local principal. |
 | Frontend alternativo | `5202` | Desarrollo cuando Docker ya está activo. |
-| API FastAPI | `5201` | Catálogo dinámico y health checks. |
+| API FastAPI | `10001` | Catálogo dinámico y health checks. |
 
 ## Stack tecnológico
 
@@ -161,7 +171,7 @@ La autenticación se resuelve con Keycloak a través de OIDC usando el cliente o
 
 El catálogo no depende ciegamente de un único endpoint.
 
-1. El frontend intenta resolver la API usando `VITE_API_BASE_URL`, el origen actual y, si hace falta, el dominio canónico `https://home.tanian.net`.
+1. El frontend intenta resolver la API usando `VITE_API_BASE_URL`, el origen actual y, si hace falta, el dominio canónico `https://carlosrevert.es`.
 2. La respuesta se valida en cliente antes de usarse.
 3. Si todas las peticiones fallan, la web degrada con elegancia a un catálogo local de fallback incluido en el frontend.
 4. La API, a su vez, ejecuta comprobaciones asíncronas contra cada web publicada para devolver un estado `online` u `offline` actualizado.
@@ -240,7 +250,7 @@ cd api
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn index:app --reload --host 0.0.0.0 --port 5201
+uvicorn index:app --reload --host 0.0.0.0 --port 10001
 ```
 
 5. Levanta el frontend en otra terminal.
@@ -249,7 +259,7 @@ uvicorn index:app --reload --host 0.0.0.0 --port 5201
 bun run dev
 ```
 
-6. Abre la web en `http://localhost:5200`.
+6. Abre la web en `http://localhost:10000` o en `https://carlosrevert.es` cuando el DNS/proxy esté configurado.
 
 ### Opción B: desarrollo con Docker
 
@@ -260,17 +270,28 @@ make rebuild
 
 Después podrás acceder a:
 
-- Frontend: `http://localhost:5200`
-- API: `http://localhost:5201/api/health`
+- Frontend: `http://localhost:10000`
+- API: `http://localhost:10001/api/health`
 
 ### Validación rápida del entorno
 
 ```bash
 bun run lint
 bun run build
-curl http://127.0.0.1:5201/api/health
-curl http://127.0.0.1:5201/api/apps
+curl http://127.0.0.1:10001/api/health
+curl http://127.0.0.1:10001/api/apps
 ```
+
+## Metodología de trabajo en el servidor
+
+La máquina virtual (`192.168.1.130` en la LAN y `100.122.52.65` por Tailscale) aloja los contenedores. `localhost` siempre significa la máquina desde la que abre el navegador, no esta VM.
+
+- En la misma LAN: usa `http://192.168.1.130:10000`.
+- Desde fuera de la LAN con Tailscale: usa `http://100.122.52.65:10000`.
+- Desde un IDE o túnel SSH: reenvía el puerto `10000` y usa `http://localhost:10000`.
+- En producción: publica el dominio mediante un reverse proxy HTTPS en `80/443`; los puertos internos de desarrollo no deben ser la URL pública.
+
+Cada aplicación debe tener su propio repositorio y `docker-compose.yml`, variables en `.env` fuera de Git, healthchecks, logs y una década/rango de puertos reservado. Durante desarrollo se accede por IP/Tailscale; al pasar a producción se añade el dominio, TLS, backups, monitorización y políticas de firewall.
 
 ## Contribución y licencia
 

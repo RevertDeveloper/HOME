@@ -1,9 +1,9 @@
-:5200 {
+:10000 {
   encode gzip zstd
 
   @api path /api/*
   handle @api {
-    reverse_proxy api:5201
+    reverse_proxy api:10001
   }
 
   handle {

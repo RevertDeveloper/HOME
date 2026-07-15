@@ -134,7 +134,7 @@ allowed_origins = [
     origin.strip()
     for origin in os.getenv(
         "BACKEND_ALLOWED_ORIGINS",
-        "http://localhost:5200,http://127.0.0.1:5200,http://localhost:5202,https://www.gca-labs.com,http://127.0.0.1:5202,https://home.tanian.net",
+        "https://carlosrevert.es,http://localhost:10000,http://127.0.0.1:10000",
     ).split(",")
     if origin.strip()
 ]

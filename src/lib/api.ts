@@ -1,7 +1,7 @@
 import { fallbackApps } from '../data/fallbackApps.ts'
 import type { AppCategory, AppItem, AppsResponse, AppStatus } from '../types/app.ts'
 
-const CANONICAL_API_BASE_URL = 'https://home.tanian.net'
+const CANONICAL_API_BASE_URL = 'https://carlosrevert.es'
 const JSON_HEADERS = {
   Accept: 'application/json',
 } as const
@@ -21,7 +21,7 @@ function getApiBaseCandidates(): string[] {
   if (typeof window !== 'undefined' && window.location.origin) {
     candidates.add(normalizeBaseUrl(window.location.origin))
 
-    if (window.location.hostname !== 'home.tanian.net') {
+    if (window.location.hostname !== 'carlosrevert.es') {
       candidates.add(CANONICAL_API_BASE_URL)
     }
   }

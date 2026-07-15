@@ -27,7 +27,7 @@ Seguiremos estrictamente la arquitectura de alto rendimiento definida para el pr
 
 ### Infraestructura y Seguridad
 *   **Auth**: Integración directa con **Keycloak** vía OIDC (OpenID Connect) usando la librería `keycloak-js`.
-*   **Puerto**: Configuración de Vite/Server para exponer el servicio en el puerto `5200`.
+*   **Puerto**: Configuración de Vite/Server para exponer el servicio en el puerto `10000`.
 
 ## 3. Estrategia de Diseño y UX (Mejoras Propuestas)
 
@@ -65,7 +65,7 @@ La navegación será una experiencia narrativa vertical:
 1.  Inicializar proyecto con `Bun` + `Vite` (React TS).
 2.  Configurar `Tailwind CSS` y `Shadcn/UI`.
 3.  Configurar Proxy en `vite.config.ts` para conectar con el backend FastAPI.
-4.  Establecer el puerto de desarrollo y producción en `5200`.
+4.  Establecer el puerto de desarrollo y producción en `10000`.
 
 ### Fase 2: Backend de Metadatos (FastAPI)
 1.  Crear estructura `/api`.
@@ -105,4 +105,4 @@ La navegación será una experiencia narrativa vertical:
 ---
 
 ### Siguientes Pasos
-Una vez aprobado este roadmap, procederé a ejecutar la **Fase 1** (Instalación y Configuración del entorno en el puerto 5200).
+Una vez aprobado este roadmap, procederé a ejecutar la **Fase 1** (Instalación y Configuración del entorno en el puerto 10000).

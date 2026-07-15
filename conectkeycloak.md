@@ -24,7 +24,7 @@ Estas opciones son vitales para que Keycloak sepa a dónde devolver al usuario c
 *   **Web Origins**: 
     *   Pon `+` (esto permite que los orígenes coincidan con las Redirect URIs para CORS).
 *   **Valid Post Logout Redirect URIs**:
-    *   Siempre incluye: `https://home.tanian.net/*`.
+    *   Siempre incluye: `https://carlosrevert.es/*`.
     *   Esto permite que al cerrar sesión, Keycloak acepte devolver al usuario al portal principal.
 
 ---
@@ -41,7 +41,7 @@ VITE_KEYCLOAK_CLIENT_ID=tu-client-id-aqui
 
 # Rutas de redirección
 VITE_AUTH_REDIRECT_URI=https://tu-app.tanian.net
-VITE_AUTH_LOGOUT_REDIRECT_URL=https://home.tanian.net
+VITE_AUTH_LOGOUT_REDIRECT_URL=https://carlosrevert.es
 ```
 
 ---
@@ -80,7 +80,7 @@ Utiliza este patrón para asegurar que la sesión se cierre tanto en la app como
 
 ```typescript
 export const logout = async () => {
-  const redirectUri = "https://home.tanian.net";
+  const redirectUri = "https://carlosrevert.es";
   
   try {
     // Intento oficial

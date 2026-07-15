@@ -7,15 +7,15 @@ services:
     image: home-tanian-api:stable
     restart: unless-stopped
     environment:
-      BACKEND_ALLOWED_ORIGINS: https://home.tanian.net,http://localhost:5200,https://www.gca-labs.com,http://127.0.0.1:5200,http://localhost:5202,http://127.0.0.1:5202
+      BACKEND_ALLOWED_ORIGINS: https://carlosrevert.es,http://localhost:10000,http://127.0.0.1:10000
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5201/api/health', timeout=2)"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:10001/api/health', timeout=2)"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 15s
     ports:
-      - "5201:5201"
+      - "10001:10001"
     networks:
       - home_tanian_net
 
@@ -30,9 +30,9 @@ services:
         condition: service_healthy
     restart: unless-stopped
     ports:
-      - "5200:5200"
+      - "10000:10000"
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5200/"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:10000/"]
       interval: 30s
       timeout: 5s
       retries: 3
