@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import {
-  Bot, Blocks, BriefcaseBusiness, Server, Phone,
-  ShieldCheck, Database, Brain, Workflow, Layers, ArrowRight,
+  Blocks, Server, Database, Brain, Workflow, Layers, ArrowRight,
+  BrainCircuit, Network, CodeXml, MonitorSmartphone, GitBranch, PhoneCall, BotMessageSquare,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Hero } from '../components/Hero.tsx'
@@ -210,19 +210,19 @@ export function HomePage() {
           </motion.div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <ServiceBadge
-              icon={Bot}
+              icon={BrainCircuit}
               title="IA aplicada y sistemas RAG"
               description="Convierto modelos, documentos y datos en asistentes útiles, trazables y conectados con el conocimiento real del negocio."
               gradient="from-cyan-500/10 to-blue-500/5"
             />
             <ServiceBadge
-              icon={Blocks}
+              icon={Network}
               title="Arquitectura y escalabilidad"
               description="Diseño sistemas modulares que pueden crecer en usuarios, datos y funcionalidades sin hipotecar el producto."
               gradient="from-violet-500/10 to-purple-500/5"
             />
             <ServiceBadge
-              icon={BriefcaseBusiness}
+              icon={CodeXml}
               title="Desarrollo Full Stack"
               description="Construyo productos completos: interfaces, APIs, bases de datos, procesos asíncronos e integraciones externas."
               gradient="from-amber-500/10 to-orange-500/5"
@@ -234,16 +234,34 @@ export function HomePage() {
               gradient="from-emerald-500/10 to-green-500/5"
             />
             <ServiceBadge
-              icon={Phone}
+              icon={MonitorSmartphone}
               title="Frontend y experiencia de usuario"
               description="Hago accesible la complejidad con interfaces responsive, claras y orientadas a la tarea que el usuario necesita completar."
               gradient="from-pink-500/10 to-rose-500/5"
             />
             <ServiceBadge
-              icon={ShieldCheck}
+              icon={GitBranch}
               title="Automatización e integraciones"
               description="Conecto APIs, agentes y flujos para eliminar tareas repetitivas y convertir información dispersa en procesos fiables."
               gradient="from-sky-500/10 to-blue-500/5"
+            />
+            <ServiceBadge
+              icon={PhoneCall}
+              title="Asistente telefónico con ElevenLabs"
+              description="Diseño flujos que atienden llamadas y WhatsApp con IA, conectados a la información de la empresa, bases de datos y las herramientas necesarias para resolver cada consulta."
+              gradient="from-rose-500/10 to-pink-500/5"
+            />
+            <ServiceBadge
+              icon={BotMessageSquare}
+              title="Agentes autónomos y operaciones con IA"
+              description="Configuro Hermes Agent y OpenClaw —nivel Olympian en Hermes Agent— para ejecutar rutinas con cron, controlar información de forma autónoma y conectarse mediante gateways."
+              gradient="from-indigo-500/10 to-violet-500/5"
+            />
+            <ServiceBadge
+              icon={Blocks}
+              title="Blockchain y Web3"
+              description="Experiencia desde 2018 en ecosistemas EVM, contratos inteligentes, seguridad y análisis de operaciones entre redes, exchanges y plataformas descentralizadas."
+              gradient="from-amber-500/10 to-orange-500/5"
             />
           </div>
         </div>
