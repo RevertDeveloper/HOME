@@ -46,7 +46,7 @@ class HealthResponse(BaseModel):
 
 MOCK_APPS: list[AppSchema] = [
     AppSchema(
-        id="nc-elevacion",
+        id="clark",
         name="CLARK",
         short_description="Plataforma B2B de catálogo, comparación y venta asistida de maquinaria de elevación.",
         description=(
@@ -60,14 +60,14 @@ MOCK_APPS: list[AppSchema] = [
         url="https://clark.carlosrevert.es/",
         category=AppCategory.enterprise,
         status=AppStatus.online,
-        image_url="/assets/nc-elevacion.png",
+        image_url="/assets/clark.png",
     ),
     AppSchema(
-        id="rag-juridico",
-        name="JURIDIA",
+        id="asistente-juridico",
+        name="Asistente Jurídico",
         short_description="Sistema RAG para consultar normativa española con respuestas fundamentadas y fuentes verificables.",
         description=(
-            "Construí **JURIDIA** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. "
+            "Construí **Asistente Jurídico** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. "
             "El sistema trabaja con más de **12.000 disposiciones**, **600.000 artículos** y cerca de **700.000 vectores indexados**.\n\n"
             "La arquitectura combina PostgreSQL como fuente documental, Qdrant para recuperación vectorial y un pipeline que normaliza, enriquece y expande cada consulta antes de recuperar los artículos completos. "
             "Cada respuesta enlaza a la fuente oficial del **BOE**.\n\n"
@@ -95,6 +95,23 @@ MOCK_APPS: list[AppSchema] = [
         category=AppCategory.ai,
         status=AppStatus.online,
         image_url="/assets/transcriptor.png",
+    ),
+    AppSchema(
+        id="chat-ia-local",
+        name="Chat IA Privada",
+        short_description="Actualmente offline. Chat privado con OpenUI para usar modelos de IA locales de forma similar a ChatGPT.",
+        description=(
+            "Esta aplicación está **actualmente offline**, pero muestra una forma sencilla de acercar la IA local a los equipos mediante **OpenUI**. "
+            "Su interfaz de chat permite utilizar modelos de IA alojados en infraestructura propia con una experiencia familiar, similar a ChatGPT.\n\n"
+            "Al ejecutar los modelos de forma local, las conversaciones y los datos sensibles permanecen bajo el control de la organización. "
+            "Es una alternativa práctica para incorporar IA en el día a día sin renunciar a la **privacidad**, la soberanía del dato y la flexibilidad de elegir los modelos que mejor encajen en cada caso.\n\n"
+            "La solución puede ampliarse con herramientas personalizadas, acceso a bases de datos internas, generación de documentos, análisis de datos y automatizaciones."
+        ),
+        tech=["OpenUI", "IA local", "LLM", "Docker", "Infraestructura privada"],
+        url="https://chat.dev.tanian.net/auth?redirect=%2F",
+        category=AppCategory.ai,
+        status=AppStatus.offline,
+        image_url="/assets/chat-ia-local.png",
     ),
 ]
 
@@ -140,7 +157,7 @@ async def get_health() -> HealthResponse:
 async def get_apps() -> AppListResponse:
     checks = await asyncio.gather(*(check_app_status(str(app_item.url)) for app_item in MOCK_APPS))
     hydrated_apps = [
-        app_item.model_copy(update={"status": status})
+        app_item.model_copy(update={"status": app_item.status if app_item.id == "clark" or app_item.status == AppStatus.offline else status})
         for app_item, status in zip(MOCK_APPS, checks, strict=True)
     ]
     return AppListResponse(apps=hydrated_apps, generated_at=datetime.now(UTC))

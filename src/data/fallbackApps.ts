@@ -2,7 +2,7 @@ import type { AppItem } from '../types/app.ts'
 
 export const fallbackApps: AppItem[] = [
   {
-    id: "nc-elevacion",
+    id: "clark",
     name: "CLARK",
     short_description: "Plataforma B2B de catálogo, comparación y venta asistida de maquinaria de elevación.",
     description:
@@ -10,15 +10,15 @@ export const fallbackApps: AppItem[] = [
     tech: ["Next.js", "TypeScript", "PostgreSQL", "pgvector", "RAG", "LLM local"],
     url: "https://clark.carlosrevert.es/",
     category: "enterprise",
-    image_url: "/assets/nc-elevacion.png",
+    image_url: "/assets/clark.png",
     status: "online",
   },
   {
-    id: "rag-juridico",
-    name: "JURIDIA",
+    id: "asistente-juridico",
+    name: "Asistente Jurídico",
     short_description: "Sistema RAG para consultar normativa española con respuestas fundamentadas y fuentes verificables.",
     description:
-      "Construí **JURIDIA** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. El sistema trabaja con más de **12.000 disposiciones**, **600.000 artículos** y cerca de **700.000 vectores indexados**.\n\nLa arquitectura combina PostgreSQL como fuente documental, Qdrant para recuperación vectorial y un pipeline que normaliza, enriquece y expande cada consulta antes de recuperar los artículos completos. Cada respuesta enlaza a la fuente oficial del **BOE**.\n\nEs una muestra de cómo diseño sistemas RAG especializados donde la calidad depende del contexto, el chunking y la estrategia de recuperación, no solo del modelo utilizado.",
+      "Construí **Asistente Jurídico** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. El sistema trabaja con más de **12.000 disposiciones**, **600.000 artículos** y cerca de **700.000 vectores indexados**.\n\nLa arquitectura combina PostgreSQL como fuente documental, Qdrant para recuperación vectorial y un pipeline que normaliza, enriquece y expande cada consulta antes de recuperar los artículos completos. Cada respuesta enlaza a la fuente oficial del **BOE**.\n\nEs una muestra de cómo diseño sistemas RAG especializados donde la calidad depende del contexto, el chunking y la estrategia de recuperación, no solo del modelo utilizado.",
     tech: ["Python", "React", "PostgreSQL", "Qdrant", "RAG", "Docker"],
     url: "https://juridia.carlosrevert.es/",
     category: "ai",
@@ -36,5 +36,17 @@ export const fallbackApps: AppItem[] = [
     category: "ai",
     image_url: "/assets/transcriptor.png",
     status: "online",
+  },
+  {
+    id: "chat-ia-local",
+    name: "Chat IA Privada",
+    short_description: "Actualmente offline. Chat privado con OpenUI para usar modelos de IA locales de forma similar a ChatGPT.",
+    description:
+      "Esta aplicación está **actualmente offline**, pero muestra una forma sencilla de acercar la IA local a los equipos mediante **OpenUI**. Su interfaz de chat permite utilizar modelos de IA alojados en infraestructura propia con una experiencia familiar, similar a ChatGPT.\n\nAl ejecutar los modelos de forma local, las conversaciones y los datos sensibles permanecen bajo el control de la organización. Es una alternativa práctica para incorporar IA en el día a día sin renunciar a la **privacidad**, la soberanía del dato y la flexibilidad de elegir los modelos que mejor encajen en cada caso.\n\nLa solución puede ampliarse con herramientas personalizadas, acceso a bases de datos internas, generación de documentos, análisis de datos y automatizaciones.",
+    tech: ["OpenUI", "IA local", "LLM", "Docker", "Infraestructura privada"],
+    url: "https://chat.dev.tanian.net/auth?redirect=%2F",
+    category: "ai",
+    image_url: "/assets/chat-ia-local.png",
+    status: "offline",
   },
 ]

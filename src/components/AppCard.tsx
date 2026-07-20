@@ -1,24 +1,24 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, LockKeyhole, ZoomIn, X, CheckCircle2 } from 'lucide-react'
+import { ExternalLink, ZoomIn, X, CheckCircle2 } from 'lucide-react'
 import type { AppItem } from '../types/app.ts'
 
 // Importar imágenes locales para asegurar que Vite las procese y hashee para producción
 import ragJuridicoImg from '../assets/rag-juridico.png'
 import transcriptorImg from '../assets/transcriptor.png'
-import ncElevacionImg from '../assets/nc-elevacion.png'
+import clarkImg from '../assets/clark.png'
+import chatIaLocalImg from '../assets/chat-ia-local.png'
 
 const localImages: Record<string, string> = {
   '/assets/rag-juridico.png': ragJuridicoImg,
   '/assets/transcriptor.png': transcriptorImg,
-  '/assets/nc-elevacion.png': ncElevacionImg,
+  '/assets/clark.png': clarkImg,
+  '/assets/nc-elevacion.png': clarkImg,
+  '/assets/chat-ia-local.png': chatIaLocalImg,
 }
 
 interface AppCardProps {
   app: AppItem
-  isAuthenticated: boolean
-  isLoading?: boolean
-  onLogin: (url: string) => void
 }
 
 const categoryLabels: Record<AppItem['category'], string> = {
@@ -47,7 +47,7 @@ const categoryAccents: Record<AppItem['category'], { border: string; badge: stri
 
 // Highlights por app para mostrar ventajas clave
 const appHighlights: Record<string, string[]> = {
-  'rag-juridico': [
+  'asistente-juridico': [
     'Más de 12.000 disposiciones y 600.000 artículos',
     'Cerca de 700.000 vectores indexados',
     'Respuestas trazables hasta las fuentes del BOE',
@@ -59,15 +59,21 @@ const appHighlights: Record<string, string[]> = {
     'Procesamiento asíncrono de trabajos largos',
     'Retención controlada y privacidad del dato',
   ],
-  'nc-elevacion': [
+  'clark': [
     'Catálogo, filtros y comparador responsive',
     'Flujo B2B orientado a solicitudes de presupuesto',
     'Asistente RAG con navegación contextual',
     'Next.js, PostgreSQL, pgvector e IA local',
   ],
+  'chat-ia-local': [
+    'Online a demanda, offline en local',
+    'Interfaz OpenUI similar a ChatGPT',
+    'Modelos de IA ejecutados localmente',
+    'Privacidad y control total de los datos',
+  ],
 }
 
-export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: AppCardProps) {
+export function AppCard({ app }: AppCardProps) {
   const isOnline = app.status === 'online'
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const accent = categoryAccents[app.category]
@@ -187,25 +193,23 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                 </ul>
 
                 <div className="mt-5">
-                  {isLoading ? (
-                    <div className="h-12 w-40 rounded-xl shimmer" />
-                  ) : isAuthenticated ? (
+                  {isOnline ? (
                     <a
                       href={app.url}
-                      className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-linear-to-r from-cyan-500 to-cyan-400 px-6 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/40 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-linear-to-r from-cyan-500 to-cyan-400 px-6 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-cyan-500/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
                     >
-                      Ver proyecto
-                      <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                      Navegar a esta web
+                      <ExternalLink aria-hidden={true} className="h-4 w-4" />
                     </a>
                   ) : (
-                    <button
-                      type="button"
-                      onClick={() => onLogin(app.url)}
-                      className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-slate-600 px-6 text-sm font-semibold text-slate-100 transition-all hover:border-cyan-500/40 hover:bg-cyan-500/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                    <span
+                      aria-disabled="true"
+                      className="inline-flex min-h-12 cursor-not-allowed items-center rounded-xl border border-slate-700/70 bg-slate-800/50 px-6 text-sm font-semibold text-slate-500"
                     >
-                      Iniciar sesión para ver
-                      <LockKeyhole aria-hidden="true" className="h-4 w-4" />
-                    </button>
+                      Aplicación offline
+                    </span>
                   )}
                 </div>
               </div>

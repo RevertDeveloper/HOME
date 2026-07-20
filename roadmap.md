@@ -7,7 +7,6 @@ Este documento detalla el plan de acción para construir `home.tanian.net`, el p
 El objetivo es crear una "Landing Page Experiencial" que cumpla tres funciones críticas:
 1.  **Brand Authority**: Demostrar expertise técnico mediante un diseño de vanguardia y alto rendimiento.
 2.  **Centralized Access**: Punto de entrada único para todas las aplicaciones del ecosistema.
-3.  **Seamless Authentication**: Integración fluida con Keycloak (`auth.tanian.net`) para una experiencia de usuario sin fricción.
 
 ## 2. Arquitectura "Speed Stack" (Standard Vercel Native)
 
@@ -17,7 +16,7 @@ Seguiremos estrictamente la arquitectura de alto rendimiento definida para el pr
 *   **Runtime**: `Bun` (Velocidad de instalación y ejecución superior).
 *   **Framework**: `React` + `Vite` + `TypeScript` (SPA moderna y tipada).
 *   **Styling**: `Tailwind CSS` + `Shadcn/UI` (Componentes accesibles y elegantes) + `Framer Motion` (Animaciones complejas).
-*   **State Management**: `Zustand` (Para gestionar el estado de autenticación y datos de las apps de forma ligera).
+*   **State Management**: `Zustand` (Para gestionar los datos de las apps de forma ligera).
 *   **Routing**: `React Router` (Aunque sea una sola página principal, preparamos la estructura para escalabilidad).
 
 ### Backend (API Layer)
@@ -26,9 +25,7 @@ Seguiremos estrictamente la arquitectura de alto rendimiento definida para el pr
 *   **Validation**: `Pydantic` (Esquemas de datos estrictos).
 
 ### Infraestructura y Seguridad
-*   **Auth**: Integración directa con **Keycloak** vía OIDC (OpenID Connect) usando la librería `keycloak-js`.
 *   **Puerto**: Configuración de Vite/Server para exponer el servicio en el puerto `10000`.
-
 ## 3. Estrategia de Diseño y UX (Mejoras Propuestas)
 
 Para cumplir con el requerimiento de "excepcional, profesional y elegante", propongo las siguientes mejoras sobre la idea original:
@@ -54,13 +51,11 @@ La navegación será una experiencia narrativa vertical:
     *   **Estado en Tiempo Real**: Un pequeño indicador (punto verde/rojo) en la esquina de la tarjeta que muestra si la app está operativa (haciendo ping al backend).
     *   **Video Preview on Hover**: Al pasar el ratón, la imagen estática de la app cobra vida o muestra un breve video loop de la interfaz.
     *   **Smart Actions**:
-        *   *Usuario Anónimo*: Botón "Log in to Access" con un candado sutil.
-        *   *Usuario Autenticado*: Botón "Launch App" brillante y pulsante.
+    *   **Acción pública**: Botón "Navegar a esta web" para acceder directamente a cada proyecto.
 
 4.  **Footer Institucional**: Enlaces a contacto, status page y copyright.
 
 ## 4. Roadmap de Ejecución
-
 ### Fase 1: Scaffolding y Configuración Base
 1.  Inicializar proyecto con `Bun` + `Vite` (React TS).
 2.  Configurar `Tailwind CSS` y `Shadcn/UI`.
@@ -73,21 +68,18 @@ La navegación será una experiencia narrativa vertical:
 3.  Crear endpoint `GET /api/apps` que devuelva el listado de aplicaciones (inicialmente mockeado, luego base de datos o config file).
 4.  (Opcional) Endpoint de Health Check real.
 
-### Fase 3: Frontend Core & Keycloak
-1.  Implementar `AuthProvider` usando `keycloak-js`.
-    *   Configurar cliente `home-client` apuntando a `auth.tanian.net`.
-    *   Manejar redirecciones de login/logout.
-2.  Crear componentes base: `Hero`, `AppCard`, `ServiceBadge`.
-3.  Conectar Frontend con Backend para obtener la lista de apps.
+### Fase 3: Frontend Core
+1.  Crear componentes base: `Hero`, `AppCard`, `ServiceBadge`.
+2.  Conectar Frontend con Backend para obtener la lista de apps.
 
 ### Fase 4: Polish & "Wow Factors"
 1.  Implementar animaciones de entrada con `Framer Motion` (las tarjetas aparecen suavemente al hacer scroll).
 2.  Añadir efectos de hover y glassmorphism.
 3.  Optimización de assets y SEO (meta tags y títulos dinámicos).
 
-## 5. Datos Mockeados Iniciales (Para las Cards)
-
 **App 1: Tanian AI Suite**
+
+## 5. Datos Mockeados Iniciales (Para las Cards)
 *   **Desc**: Plataforma de generación de contenido y análisis predictivo potenciada por LLMs de última generación.
 *   **Tech**: Python, PyTorch, React.
 *   **Url**: `ai.tanian.net`

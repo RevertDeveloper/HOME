@@ -9,7 +9,6 @@ import { ServiceBadge } from '../components/ServiceBadge.tsx'
 import { AppCard } from '../components/AppCard.tsx'
 import { getApps } from '../lib/api.ts'
 import { usePortalStore } from '../store/usePortalStore.ts'
-import { useAuth } from '../auth/AuthProvider.tsx'
 
 /* ------------------------------------------------------------------ */
 /*  Methodology steps for the process section                          */
@@ -76,8 +75,6 @@ export function HomePage() {
   const setAppsLoading = usePortalStore((state) => state.setAppsLoading)
   const setAppsError = usePortalStore((state) => state.setAppsError)
 
-  const { isAuthenticated, isLoading, userName, login, logout } = useAuth()
-
   useEffect(() => {
     let active = true
 
@@ -136,30 +133,6 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {isLoading ? (
-            <div className="h-11 w-24 rounded-lg shimmer" />
-          ) : isAuthenticated && userName ? (
-            <>
-              <span className="hidden text-sm text-slate-400 sm:inline">{userName}</span>
-              <button
-                type="button"
-                onClick={logout}
-                className="min-h-11 rounded-xl border border-slate-700/80 px-4 text-sm font-medium text-slate-300 transition-all hover:border-slate-500 hover:bg-slate-800/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
-                Cerrar sesión
-              </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              onClick={() => login()}
-              className="min-h-11 rounded-xl border border-cyan-500/30 bg-cyan-500/5 px-5 text-sm font-medium text-cyan-300 transition-all hover:border-cyan-500/50 hover:bg-cyan-500/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-            >
-              Iniciar sesión
-            </button>
-          )}
-        </div>
       </header>
 
       {/* ── Hero ── */}
@@ -430,7 +403,7 @@ export function HomePage() {
 
           <div className="mt-12 space-y-8">
             {apps.map((app) => (
-              <AppCard key={app.id} app={app} isAuthenticated={isAuthenticated} isLoading={isLoading} onLogin={(url) => login(url)} />
+              <AppCard key={app.id} app={app} />
             ))}
           </div>
         </div>

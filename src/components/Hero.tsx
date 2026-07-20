@@ -31,9 +31,9 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl"
         >
-          Convierto necesidades en{' '}
+          Convierto necesidades{' '}
           <span className="text-gradient">
-            productos que escalan.
+           en productos escalables.
           </span>
         </motion.h1>
 
@@ -44,7 +44,7 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           transition={{ duration: 0.6, delay: 0.12 }}
           className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-slate-400 sm:text-xl"
         >
-          Soy Carlos Revert, desarrollador Full Stack especializado en IA aplicada. Analizo tu producto,
+          Soy Carlos Revert, <strong className="text-slate-200">desarrollador Full Stack especializado en IA aplicada</strong>. Analizo tu producto,
           detecto dónde puede mejorar y construyo <strong className="text-slate-200">software, automatizaciones e infraestructura</strong> que
           aportan valor real desde la primera versión.
         </motion.p>

@@ -6,6 +6,8 @@ const JSON_HEADERS = {
   Accept: 'application/json',
 } as const
 
+const LEGACY_CLARK_APP_ID = 'nc-elevacion'
+
 function normalizeBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/+$/, '')
 }
@@ -45,6 +47,19 @@ function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === 'string')
 }
 
+function isHttpUrl(value: unknown): value is string {
+  if (typeof value !== 'string') {
+    return false
+  }
+
+  try {
+    const { protocol } = new URL(value)
+    return protocol === 'https:' || protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
 function isAppItem(value: unknown): value is AppItem {
   if (!value || typeof value !== 'object') {
     return false
@@ -58,7 +73,7 @@ function isAppItem(value: unknown): value is AppItem {
     && (candidate.short_description === undefined || typeof candidate.short_description === 'string')
     && typeof candidate.description === 'string'
     && isStringArray(candidate.tech)
-    && typeof candidate.url === 'string'
+    && isHttpUrl(candidate.url)
     && isAppCategory(candidate.category)
     && (candidate.image_url === undefined || typeof candidate.image_url === 'string')
     && isAppStatus(candidate.status)
@@ -89,6 +104,21 @@ async function apiFetch<T>(baseUrl: string, path: string): Promise<T> {
   return (await response.json()) as T
 }
 
+function normalizeLegacyApps(response: AppsResponse): AppsResponse {
+  const clarkApp = fallbackApps.find((app) => app.id === 'clark')
+
+  if (!clarkApp) {
+    return response
+  }
+
+  return {
+    ...response,
+    apps: response.apps.map((app) => (
+      app.id === LEGACY_CLARK_APP_ID ? clarkApp : app
+    )),
+  }
+}
+
 function buildFallbackResponse(): AppsResponse {
   return {
     apps: fallbackApps,
@@ -107,7 +137,7 @@ export async function getApps(): Promise<AppsResponse> {
         throw new Error(`Invalid apps response from ${baseUrl || 'current origin'}`)
       }
 
-      return response
+      return normalizeLegacyApps(response)
     } catch (error) {
       errors.push(error instanceof Error ? error : new Error('Unknown apps request error'))
     }

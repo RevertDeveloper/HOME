@@ -4,7 +4,6 @@
 ![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![Keycloak](https://img.shields.io/badge/Auth-Keycloak-4a5568?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Deploy-Docker%20%7C%20Vercel-2496ed?style=for-the-badge&logo=docker&logoColor=white)
 ![License](https://img.shields.io/badge/license-pending-lightgrey?style=for-the-badge)
 
@@ -14,14 +13,13 @@ Explora las instancias públicas del portfolio de Carlos Revert. Haz clic en cad
 
 - [Home](https://carlosrevert.es) — Portal principal y catálogo.
 - [CLARK](https://clark.carlosrevert.es) — Catálogo inteligente y venta asistida de maquinaria.
-- [JURIDIA](https://juridia.carlosrevert.es) — Sistema RAG jurídico con respuestas trazables a fuentes oficiales.
+- [Asistente Jurídico](https://juridia.carlosrevert.es) — Sistema RAG jurídico con respuestas trazables a fuentes oficiales.
 - [Transcriptor](https://transcriptor.carlosrevert.es/) — Audio, transcripción e informes estructurados con IA.
 
 > Portfolio de Carlos Revert para presentar productos reales de desarrollo Full Stack, IA aplicada, sistemas RAG e infraestructura.
 
 Portfolio Carlos Revert es la web principal de mi marca personal y el punto de entrada a los proyectos que ya están en producción o listos para demostración. Su objetivo no es solo enseñar una marca: explica con claridad qué problemas resuelvo, cómo trabajo y qué tipo de software soy capaz de desplegar en empresas industriales y entornos con alta exigencia de privacidad.
 
-La experiencia combina narrativa comercial, catálogo de productos, estado online/offline en tiempo real y autenticación federada con Keycloak. El resultado es una landing pública con valor de negocio, pero también una base técnica preparada para servir como hub del portfolio.
 
 ## Inicio rápido y comandos Make
 
@@ -64,31 +62,27 @@ Con eso levantas el stack Docker completo con frontend en el puerto `10000` y AP
 | Frontend | Bun, React 19, Vite 7, TypeScript 5.9 | SPA rápida, tipada y preparada para despliegue moderno. |
 | UI | Tailwind CSS v4, Framer Motion, Lucide React | Interfaz visual, animaciones y sistema de iconografía. |
 | Estado y routing | Zustand, React Router | Estado global ligero y navegación de la SPA. |
-| Autenticación | Keycloak JS, OIDC, PKCE | Inicio de sesión federado y SSO entre aplicaciones del portfolio. |
 | Backend | Python 3.12, FastAPI, Pydantic, httpx | API de catálogo, validación de esquemas y comprobación asíncrona de estado. |
 | Infraestructura | Docker, Docker Compose, Caddy, Vercel | Ejecución local, reverse proxy y despliegue web/API. |
 
 ## Webs y soluciones que presenta el portal
 
-El catálogo mostrado en Portfolio Carlos Revert no es genérico: presenta soluciones concretas del portfolio de Carlos Revert, cada una con una propuesta de valor distinta y con acceso protegido cuando aplica.
-
+El catálogo presenta soluciones concretas del portfolio de Carlos Revert, cada una con una propuesta de valor distinta y un enlace público directo.
 | Solución | Qué muestra | Enfoque principal |
 | --- | --- | --- |
 | **CLARK** | Plataforma B2B con catálogo, comparador, presupuestos y asistencia contextual. | Next.js, PostgreSQL, pgvector, RAG e IA local. |
-| **JURIDIA** | Sistema RAG jurídico con respuestas trazables y referencias al BOE. | Python, PostgreSQL, Qdrant, RAG y Docker. |
+| **Asistente Jurídico** | Sistema RAG jurídico con respuestas trazables y referencias al BOE. | Python, PostgreSQL, Qdrant, RAG y Docker. |
 | **Transcriptor con IA** | Audio, transcripciones e informes estructurados con procesamiento asíncrono. | FastAPI, React, PostgreSQL, Whisper y LLM. |
 
 Además del catálogo, la landing comunica los pilares de mi perfil: producto Full Stack, IA aplicada, datos, automatización, despliegue cloud o local y escalabilidad.
 
 ## Arquitectura del sistema
 
-El proyecto sigue una arquitectura de portal SPA con API ligera de metadatos y autenticación centralizada. El frontend renderiza toda la experiencia pública, la API devuelve el catálogo y su estado en tiempo real, y Keycloak resuelve el acceso federado al resto de aplicaciones del portfolio.
-
+El proyecto sigue una arquitectura de portal SPA con una API ligera de metadatos. El frontend renderiza la experiencia pública y la API devuelve el catálogo y su estado en tiempo real.
 ### Patrón general
 
 - **Frontend-first SPA** para la experiencia pública y el catálogo.
 - **API desacoplada** para metadatos y health checks de las soluciones publicadas.
-- **SSO centralizado** con Keycloak para no duplicar autenticación entre productos.
 - **Doble despliegue**: Vercel para enfoque serverless y Docker Compose para despliegue controlado con Caddy.
 
 ### Diagrama de arquitectura
@@ -96,11 +90,9 @@ El proyecto sigue una arquitectura de portal SPA con API ligera de metadatos y a
 ```mermaid
 flowchart LR
 		U[Visitante o cliente] --> W[Portfolio Carlos Revert<br/>React + Vite SPA]
-		W -->|check-sso / login / logout| K[Keycloak OIDC]
 		W -->|GET /api/apps| A[FastAPI API]
 		A -->|health checks asíncronos| P[Proyectos del portfolio]
 		A -->|apps + status| W
-		W -->|Acceso autenticado| P
 
 		subgraph Deploy
 			V[Vercel]
@@ -123,13 +115,11 @@ flowchart LR
 ├── docker/                 # Configuración del servidor web en contenedor
 │   └── Caddyfile           # Reverse proxy a la API y serving estático del frontend
 ├── public/                 # Recursos públicos que no pasan por el bundler
-│   ├── silent-check-sso.html
 │   └── assets/
 ├── scripts/                # Scripts auxiliares de despliegue y actualización
 │   ├── deploy.sh
 │   └── update.sh
 ├── src/                    # Aplicación frontend
-│   ├── auth/               # Integración Keycloak y contexto de autenticación
 │   ├── components/         # Hero, badges de servicios y cards del catálogo
 │   ├── data/               # Catálogo de fallback si la API no responde
 │   ├── lib/                # Cliente API y utilidades
@@ -145,7 +135,6 @@ flowchart LR
 ├── Makefile                # Atajos para desarrollo y rebuild
 ├── vercel.json             # Rewrites de Vercel para `/api`
 ├── index.html              # Entrada HTML de la SPA
-└── conectkeycloak.md       # Guía operativa de conexión con Keycloak
 ```
 
 ## Documentación técnica profunda
@@ -154,28 +143,18 @@ flowchart LR
 
 La home está construida como un recorrido narrativo. Empieza con una propuesta de valor muy directa, continúa con una explicación de quién es Carlos Revert, expone servicios y metodología, muestra el stack tecnológico y termina en el catálogo de soluciones reales. No es una web de marketing vacía: cada bloque prepara al visitante para entender por qué existen los proyectos que se enseñan al final.
 
-### 2. Flujo de autenticación
-
-La autenticación se resuelve con Keycloak a través de OIDC usando el cliente oficial `keycloak-js`.
-
-- La inicialización usa `check-sso`, por lo que la web comprueba si ya existe sesión sin forzar login al entrar.
-- Se habilita `pkceMethod: S256`, que es el patrón correcto para clientes frontend públicos.
-- El archivo `public/silent-check-sso.html` permite el chequeo silencioso de sesión.
-- Si el usuario pulsa acceder sobre una aplicación, el login redirige después directamente a la URL objetivo de esa solución.
-- El logout devuelve al usuario al origen actual del portal.
-
-### 3. Flujo de datos del catálogo
+### 2. Flujo de datos del catálogo
 
 El catálogo no depende ciegamente de un único endpoint.
 
 1. El frontend intenta resolver la API usando `VITE_API_BASE_URL`, el origen actual y, si hace falta, el dominio canónico `https://carlosrevert.es`.
-2. La respuesta se valida en cliente antes de usarse.
+2. La respuesta se valida en cliente antes de usarse, incluidos los enlaces HTTP(S) de cada proyecto.
 3. Si todas las peticiones fallan, la web degrada con elegancia a un catálogo local de fallback incluido en el frontend.
 4. La API, a su vez, ejecuta comprobaciones asíncronas contra cada web publicada para devolver un estado `online` u `offline` actualizado.
 
 Ese diseño permite que la landing siga siendo útil incluso si el backend no está disponible en un entorno temporal o durante una demo aislada.
 
-### 4. API y modelos principales
+### 3. API y modelos principales
 
 | Endpoint | Método | Descripción |
 | --- | --- | --- |
@@ -192,19 +171,16 @@ El modelo principal del backend es `AppSchema`, que normaliza los siguientes cam
 - Imagen representativa.
 - Estado operativo (`online`, `offline`).
 
-### 5. Variables de entorno
+### 4. Variables de entorno
 
 Usa `.env.example` como base y ajusta los valores a tu entorno real.
 
 | Variable | Capa | Obligatoria | Descripción |
 | --- | --- | --- | --- |
-| `VITE_KEYCLOAK_URL` | Frontend | Sí | URL base de la instancia de Keycloak. |
-| `VITE_KEYCLOAK_REALM` | Frontend | Sí | Realm activo para el portal y el SSO. |
-| `VITE_KEYCLOAK_CLIENT_ID` | Frontend | Sí | Client público registrado para Portfolio Carlos Revert. |
 | `VITE_API_BASE_URL` | Frontend | Recomendado | Base URL preferida para resolver `/api` fuera del mismo dominio. |
 | `BACKEND_ALLOWED_ORIGINS` | Backend | Sí | Lista de orígenes permitidos por CORS para la API. |
 
-### 6. Estrategia de despliegue
+### 5. Estrategia de despliegue
 
 El proyecto está preparado para dos escenarios:
 
@@ -304,7 +280,7 @@ Si vas a extender la landing o añadir nuevas soluciones al catálogo, mantén e
 
 ### Estado de testing
 
-En el estado actual del repositorio no hay una suite de tests automatizados versionada. La validación operativa se apoya en build, lint y comprobaciones manuales del flujo de catálogo y autenticación.
+En el estado actual del repositorio no hay una suite de tests automatizados versionada. La validación operativa se apoya en build, lint y comprobaciones manuales del flujo de catálogo.
 
 ### Licencia
 
