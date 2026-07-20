@@ -47,88 +47,59 @@ class HealthResponse(BaseModel):
 MOCK_APPS: list[AppSchema] = [
     AppSchema(
         id="nc-elevacion",
-        name="NcElevación",
-        short_description="Web avanzada de venta de carretillas elevadoras CLARK con navegación autónoma impulsada por IA.",
+        name="CLARK",
+        short_description="Plataforma B2B de catálogo, comparación y venta asistida de maquinaria de elevación.",
         description=(
-            "**NcElevación** es una plataforma de venta online tecnológicamente diferencial, diseñada como distribuidor oficial de la prestigiosa marca **CLARK**.\n\n"
-            "Más allá de ofrecer catálogos interactivos y comparadores avanzados de maquinaria, esta web integra un **asistente virtual (RAG)** de última generación "
-            "que conoce en profundidad cada detalle de la empresa y las especificaciones técnicas de todos los productos del catálogo.\n\n"
-            "El mayor salto tecnológico es su **sistema de navegación inteligente**: la IA no solo responde, sino que detecta la verdadera necesidad del cliente y "
-            "tiene la capacidad de **navegar por la web en nombre del usuario**. Esto puede hacerse pidiendo permiso de forma interactiva (modo asistente) "
-            "o ejecutando acciones completas hasta encontrar el producto ideal (modo autónomo).\n\n"
-            "Un salto hacia el futuro del B2B y la venta industrial, donde la tecnología local se pone al completo servicio del usuario final."
+            "Desarrollé **CLARK** como un producto comercial completo para maquinaria de alto valor, donde una compra convencional no resuelve la necesidad del cliente. "
+            "La experiencia integra catálogo, filtros, fichas técnicas, comparador responsive, carrito y solicitudes de presupuesto.\n\n"
+            "El asistente incorpora **RAG y búsqueda semántica** para entender las necesidades del usuario, recomendar productos y navegar de forma contextual hacia fichas y comparativas. "
+            "Así, la IA no aparece como un añadido: forma parte del proceso de descubrimiento y captación comercial.\n\n"
+            "Este proyecto demuestra cómo convierto especificaciones complejas en una **experiencia accesible**, conectando frontend, backend, datos e IA local en un único producto preparado para evolucionar."
         ),
-        tech=["IA Autónoma", "RAG", "Catálogo Inteligente", "Asistente Virtual", "Agentes Reactivos"],
-        url="https://ncelevacion.com/",
+        tech=["Next.js", "TypeScript", "PostgreSQL", "pgvector", "RAG", "LLM local"],
+        url="https://clark.carlosrevert.es/",
         category=AppCategory.enterprise,
         status=AppStatus.online,
         image_url="/assets/nc-elevacion.png",
     ),
     AppSchema(
         id="rag-juridico",
-        name="Asistente Jurídico",
-        short_description="Plataforma avanzada de análisis de documentos y asistencia jurídica potenciada por inteligencia artificial.",
+        name="JURIDIA",
+        short_description="Sistema RAG para consultar normativa española con respuestas fundamentadas y fuentes verificables.",
         description=(
-            "Un chat inteligente que responde preguntas sobre **legislación española** de **forma precisa y trazable**.\n\n"
-            "Este sistema ejecuta un modelo de inteligencia artificial en nuestros **servidores locales** —**sin depender de servicios externos**— "
-            "y tiene acceso a toda la legislación consolidada del **Boletín Oficial del Estado (BOE)**.\n\n"
-            "Cuando realizas una consulta, el sistema busca automáticamente en una **base de datos vectorial** los artículos más relevantes, "
-            "los analiza y genera una respuesta fundamentada exclusivamente en la **legislación vigente**. "
-            "Además, proporciona **enlaces directos** a la página oficial del BOE para que puedas verificar y profundizar en cada fuente citada.\n\n"
-            "Este sistema es **totalmente personalizable**: puede adaptarse a cualquier sector regulado "
-            "(normativa fiscal, laboral, medioambiental, sanitaria…) y a cualquier empresa que necesite consultar legislación de forma rápida y fiable."
+            "Construí **JURIDIA** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. "
+            "El sistema trabaja con más de **12.000 disposiciones**, **600.000 artículos** y cerca de **700.000 vectores indexados**.\n\n"
+            "La arquitectura combina PostgreSQL como fuente documental, Qdrant para recuperación vectorial y un pipeline que normaliza, enriquece y expande cada consulta antes de recuperar los artículos completos. "
+            "Cada respuesta enlaza a la fuente oficial del **BOE**.\n\n"
+            "Es una muestra de cómo diseño sistemas RAG especializados donde la calidad depende del contexto, el chunking y la estrategia de recuperación, no solo del modelo utilizado."
         ),
-        tech=["IA Local", "RAG", "Base de Datos Vectorial", "Python", "FastAPI"],
-        url="https://ia.tanian.net/",
+        tech=["Python", "React", "PostgreSQL", "Qdrant", "RAG", "Docker"],
+        url="https://juridia.carlosrevert.es/",
         category=AppCategory.ai,
-        status=AppStatus.offline,
+        status=AppStatus.online,
         image_url="/assets/rag-juridico.png",
     ),
     AppSchema(
         id="transcriptor",
-        name="Transcriptor Inteligente",
-        short_description="Servicio de transcripción de audio a texto de alta precisión con segmentación y análisis de locutores.",
+        name="Transcriptor con IA",
+        short_description="Aplicación que convierte audio en transcripciones e informes estructurados sobre infraestructura propia.",
         description=(
-            "Una herramienta que convierte **audio en texto** y lo transforma automáticamente en **informes útiles**.\n\n"
-            "Seleccionas un modo según el tipo de audio —reuniones, lluvia de ideas, tareas, desarrollo de software o sesiones de terapia— "
-            "y el sistema transcribe la grabación con **alta precisión**.\n\n"
-            "Después, un modelo de IA procesa el texto según el modo elegido: "
-            "genera **actas de reuniones**, **listas de tareas priorizadas**, **resúmenes de ideas** o **informes clínicos estructurados**. "
-            "El verdadero poder está en no perder nunca la información valiosa de una conversación: "
-            "cada palabra queda registrada, organizada y lista para compartir con personas ausentes o para futuras consultas.\n\n"
-            "Este sistema es **adaptable a cualquier empresa**: desde equipos que necesitan documentar sus reuniones, "
-            "hasta clínicas que requieren historiales de sesiones o departamentos creativos que quieren capturar cada idea."
+            "Desarrollé este producto para transformar grabaciones y archivos de audio en **información lista para utilizar**. "
+            "Permite grabar desde el navegador, subir archivos, controlar trabajos largos y generar informes adaptados a distintos contextos.\n\n"
+            "La solución desacopla React, FastAPI, PostgreSQL y una cola de procesamiento. **Whisper** realiza la transcripción y un LLM estructura, resume o transforma el contenido, "
+            "con persistencia por usuario y retención temporal controlada de los audios.\n\n"
+            "El resultado demuestra mi capacidad para integrar interfaz, API, tareas asíncronas, modelos de IA y despliegue self-hosted en escenarios donde la **privacidad y el control del dato** son parte del producto."
         ),
-        tech=["IA Local", "Speech-to-Text", "LLM", "React", "Whisper"],
-        url="https://voice.home.tanian.net/",
+        tech=["FastAPI", "React", "PostgreSQL", "Whisper", "LLM", "Docker"],
+        url="https://transcriptor.carlosrevert.es/",
         category=AppCategory.ai,
-        status=AppStatus.offline,
+        status=AppStatus.online,
         image_url="/assets/transcriptor.png",
-    ),
-    AppSchema(
-        id="chat-ia-local",
-        name="Chat IA Privada",
-        short_description="Interfaz de chat potente impulsada por modelos de inteligencia artificial ejecutados en servidores privados.",
-        description=(
-            "Una interfaz de chat potente impulsada por modelos de inteligencia artificial que se ejecutan íntegramente en los **servidores de tu empresa**.\n\n"
-            "A diferencia de otros servicios como ChatGPT o Gemini, toda la información se **procesa en local**: "
-            "ningún dato sale de tus instalaciones, lo que garantiza la **privacidad total** y la **soberanía de tus datos**. "
-            "Es la forma segura de impulsar la productividad de tus empleados con IA, sin el riesgo de filtrar información confidencial "
-            "sobre clientes, proyectos o estrategias de negocio. **TODO SE QUEDA EN CASA**.\n\n"
-            "Estos modelos se pueden equipar con herramientas personalizadas: acceso a **bases de datos internas**, "
-            "generación de documentos, análisis de datos, **automatización de tareas** y mucho más.\n\n"
-            "Es ideal para cualquier empresa que quiera usar inteligencia artificial avanzada con **total control** sobre su información."
-        ),
-        tech=["IA Local", "LLM", "React", "TypeScript", "API Privada"],
-        url="https://chat.dev.tanian.net/auth?redirect=%2F",
-        category=AppCategory.ai,
-        status=AppStatus.offline,
-        image_url="/assets/chat-ia-local.png",
     ),
 ]
 
 
-app = FastAPI(title="Tanian Home API", version="1.0.0")
+app = FastAPI(title="Carlos Revert Portfolio API", version="1.0.0")
 
 allowed_origins = [
     origin.strip()

@@ -6,13 +6,11 @@ import type { AppItem } from '../types/app.ts'
 // Importar imágenes locales para asegurar que Vite las procese y hashee para producción
 import ragJuridicoImg from '../assets/rag-juridico.png'
 import transcriptorImg from '../assets/transcriptor.png'
-import chatIaLocalImg from '../assets/chat-ia-local.png'
 import ncElevacionImg from '../assets/nc-elevacion.png'
 
 const localImages: Record<string, string> = {
   '/assets/rag-juridico.png': ragJuridicoImg,
   '/assets/transcriptor.png': transcriptorImg,
-  '/assets/chat-ia-local.png': chatIaLocalImg,
   '/assets/nc-elevacion.png': ncElevacionImg,
 }
 
@@ -26,7 +24,7 @@ interface AppCardProps {
 const categoryLabels: Record<AppItem['category'], string> = {
   ai: 'Inteligencia Artificial',
   blockchain: 'Blockchain',
-  enterprise: 'Web Comercial',
+  enterprise: 'Producto B2B',
 }
 
 const categoryAccents: Record<AppItem['category'], { border: string; badge: string; glow: string }> = {
@@ -50,28 +48,22 @@ const categoryAccents: Record<AppItem['category'], { border: string; badge: stri
 // Highlights por app para mostrar ventajas clave
 const appHighlights: Record<string, string[]> = {
   'rag-juridico': [
-    'Legislación consolidada completa del BOE',
-    'Respuestas con fuentes verificables y enlaces directos',
-    'Modelo de IA ejecutado en local — sin filtraciones',
-    'Adaptable a cualquier normativa sectorial',
+    'Más de 12.000 disposiciones y 600.000 artículos',
+    'Cerca de 700.000 vectores indexados',
+    'Respuestas trazables hasta las fuentes del BOE',
+    'PostgreSQL y Qdrant como base documental',
   ],
   'transcriptor': [
-    '5 modos especializados para cada tipo de audio',
-    'Transcripción + procesamiento inteligente',
-    'Informes automáticos listos para compartir',
-    'Ideal para reuniones, terapia, brainstorming y más',
-  ],
-  'chat-ia-local': [
-    'Privacidad total — ningún dato sale de tu empresa',
-    'Compatible con herramientas personalizadas',
-    'Alternativa segura a ChatGPT para empresas',
-    'Escalable con nuevos modelos y funcionalidades',
+    'Grabación y subida de audio desde el navegador',
+    'Whisper y LLM sobre infraestructura propia',
+    'Procesamiento asíncrono de trabajos largos',
+    'Retención controlada y privacidad del dato',
   ],
   'nc-elevacion': [
-    'Navegación web autónoma impulsada por IA',
-    'Catálogo inteligente de maquinaria CLARK',
-    'Asistente virtual RAG integrado (conoce toda la empresa)',
-    'Interacción proactiva y personalizada',
+    'Catálogo, filtros y comparador responsive',
+    'Flujo B2B orientado a solicitudes de presupuesto',
+    'Asistente RAG con navegación contextual',
+    'Next.js, PostgreSQL, pgvector e IA local',
   ],
 }
 
@@ -202,7 +194,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                       href={app.url}
                       className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-linear-to-r from-cyan-500 to-cyan-400 px-6 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all hover:shadow-cyan-500/40 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
                     >
-                      Acceder a la aplicación
+                      Ver proyecto
                       <ExternalLink aria-hidden="true" className="h-4 w-4" />
                     </a>
                   ) : (
@@ -211,7 +203,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
                       onClick={() => onLogin(app.url)}
                       className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-slate-600 px-6 text-sm font-semibold text-slate-100 transition-all hover:border-cyan-500/40 hover:bg-cyan-500/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
                     >
-                      Iniciar sesión para acceder
+                      Iniciar sesión para ver
                       <LockKeyhole aria-hidden="true" className="h-4 w-4" />
                     </button>
                   )}
@@ -224,7 +216,7 @@ export function AppCard({ app, isAuthenticated, isLoading = false, onLogin }: Ap
           <div className="border-t border-slate-800/60 bg-slate-900/40 p-6 sm:p-8">
             <div className="w-full">
               <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-cyan-400">
-                Sobre esta solución
+                Qué demuestra este proyecto
               </h4>
               <div className="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
                 {app.description.split('\n\n').map((paragraph, index) => (

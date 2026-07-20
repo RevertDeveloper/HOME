@@ -31,9 +31,9 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl"
         >
-          Identificamos problemas.{' '}
+          Convierto necesidades en{' '}
           <span className="text-gradient">
-            Creamos soluciones.
+            productos que escalan.
           </span>
         </motion.h1>
 
@@ -44,9 +44,9 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           transition={{ duration: 0.6, delay: 0.12 }}
           className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-slate-400 sm:text-xl"
         >
-          Analizamos los cuellos de botella de tu empresa y desarrollamos
-          <strong className="text-slate-200"> herramientas a medida</strong> que <strong className="text-slate-200">multiplican tu productividad</strong>,
-          mejoran la calidad y eliminan errores en cada paso del proceso.
+          Soy Carlos Revert, desarrollador Full Stack especializado en IA aplicada. Analizo tu producto,
+          detecto dónde puede mejorar y construyo <strong className="text-slate-200">software, automatizaciones e infraestructura</strong> que
+          aportan valor real desde la primera versión.
         </motion.p>
 
         {/* CTA */}
@@ -61,7 +61,7 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
             onClick={onExplore}
             className="group min-h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-400 px-8 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/25 transition-all hover:shadow-cyan-500/40 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
           >
-            Descubre nuestras soluciones
+            Ver proyectos reales
             <ArrowDown className="ml-2 inline-block h-4 w-4 transition-transform group-hover:translate-y-0.5" />
           </button>
         </motion.div>
@@ -74,9 +74,9 @@ export function Hero({ onExplore }: { onExplore: () => void }) {
           className="mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-8"
         >
           {[
-            { value: '100%', label: 'Datos en local' },
-            { value: 'IA', label: 'Modelos propios' },
-            { value: '∞', label: 'Escalabilidad' },
+            { value: '120B', label: 'Modelos locales' },
+            { value: '700K', label: 'Vectores indexados' },
+            { value: '360º', label: 'Ciclo de producto' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="text-2xl font-bold text-gradient-cyan sm:text-3xl">{stat.value}</p>

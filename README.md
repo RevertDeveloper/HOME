@@ -1,7 +1,6 @@
-# Home Tanian
+# Portfolio Carlos Revert
 
 [![Web](https://img.shields.io/badge/web-carlosrevert.es-06b6d4?style=for-the-badge)](https://carlosrevert.es)
-[![Status](https://img.shields.io/badge/status-status.tanian.net-16a34a?style=for-the-badge)](https://status.tanian.net)
 ![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -11,19 +10,18 @@
 
 ## Proyectos públicos
 
-Explora las instancias públicas del ecosistema Tanian. Haz clic en cada proyecto para visitarlo:
+Explora las instancias públicas del portfolio de Carlos Revert. Haz clic en cada proyecto para visitarlo:
 
 - [Home](https://carlosrevert.es) — Portal principal y catálogo.
-- [NcElevación](https://ncelevacion.com) — Plataforma comercial de carretillas elevadoras CLARK.
-- [ia.tanian](https://ia.tanian.net) — Rag Jurídico basado en la legislación consolidada con redirección a fuentes oficiales.
-- [Transcriptor](https://voice.home.tanian.net/) — Servicio de transcripción inteligente con informes.
-- [OpenWebUI](https://chat.dev.tanian.net/) — Interfaz OpenWebUI Local
+- [CLARK](https://clark.carlosrevert.es) — Catálogo inteligente y venta asistida de maquinaria.
+- [JURIDIA](https://juridia.carlosrevert.es) — Sistema RAG jurídico con respuestas trazables a fuentes oficiales.
+- [Transcriptor](https://transcriptor.carlosrevert.es/) — Audio, transcripción e informes estructurados con IA.
 
-> Portal central del ecosistema Tanian para presentar soluciones reales de inteligencia artificial, trazabilidad, blockchain e infraestructura privada.
+> Portfolio de Carlos Revert para presentar productos reales de desarrollo Full Stack, IA aplicada, sistemas RAG e infraestructura.
 
-Home Tanian es la web de presentación de Tanian y, al mismo tiempo, el punto de entrada a los proyectos que ya están en producción o listos para demostración. Su objetivo no es solo enseñar una marca: explica con claridad qué problemas resolvemos, cómo trabajamos y qué tipo de software somos capaces de desplegar en empresas industriales y entornos con alta exigencia de privacidad.
+Portfolio Carlos Revert es la web principal de mi marca personal y el punto de entrada a los proyectos que ya están en producción o listos para demostración. Su objetivo no es solo enseñar una marca: explica con claridad qué problemas resuelvo, cómo trabajo y qué tipo de software soy capaz de desplegar en empresas industriales y entornos con alta exigencia de privacidad.
 
-La experiencia combina narrativa comercial, catálogo de productos, estado online/offline en tiempo real y autenticación federada con Keycloak. El resultado es una landing pública con valor de negocio, pero también una base técnica preparada para servir como hub del ecosistema.
+La experiencia combina narrativa comercial, catálogo de productos, estado online/offline en tiempo real y autenticación federada con Keycloak. El resultado es una landing pública con valor de negocio, pero también una base técnica preparada para servir como hub del portfolio.
 
 ## Inicio rápido y comandos Make
 
@@ -66,26 +64,25 @@ Con eso levantas el stack Docker completo con frontend en el puerto `10000` y AP
 | Frontend | Bun, React 19, Vite 7, TypeScript 5.9 | SPA rápida, tipada y preparada para despliegue moderno. |
 | UI | Tailwind CSS v4, Framer Motion, Lucide React | Interfaz visual, animaciones y sistema de iconografía. |
 | Estado y routing | Zustand, React Router | Estado global ligero y navegación de la SPA. |
-| Autenticación | Keycloak JS, OIDC, PKCE | Inicio de sesión federado y SSO entre aplicaciones del ecosistema. |
+| Autenticación | Keycloak JS, OIDC, PKCE | Inicio de sesión federado y SSO entre aplicaciones del portfolio. |
 | Backend | Python 3.12, FastAPI, Pydantic, httpx | API de catálogo, validación de esquemas y comprobación asíncrona de estado. |
 | Infraestructura | Docker, Docker Compose, Caddy, Vercel | Ejecución local, reverse proxy y despliegue web/API. |
 
 ## Webs y soluciones que presenta el portal
 
-El catálogo mostrado en Home Tanian no es genérico: presenta soluciones concretas del ecosistema Tanian, cada una con una propuesta de valor distinta y con acceso protegido cuando aplica.
+El catálogo mostrado en Portfolio Carlos Revert no es genérico: presenta soluciones concretas del portfolio de Carlos Revert, cada una con una propuesta de valor distinta y con acceso protegido cuando aplica.
 
 | Solución | Qué muestra | Enfoque principal |
 | --- | --- | --- |
-| **NcElevación** | Plataforma comercial avanzada para venta de carretillas elevadoras CLARK con navegación asistida por IA. | IA autónoma, RAG, catálogo inteligente y agentes reactivos. |
-| **Asistente Jurídico** | Motor de consulta legal sobre legislación española con respuesta trazable y verificable. | IA local, base de datos vectorial, FastAPI y fuentes BOE. |
-| **Transcriptor Inteligente** | Sistema que convierte audio en texto y en documentos útiles según el contexto. | Speech-to-Text, LLM, automatización documental y análisis por modos. |
-| **Chat IA Privada** | Asistente conversacional empresarial ejecutado íntegramente en infraestructura privada. | LLM local, privacidad de datos, herramientas internas y soberanía tecnológica. |
+| **CLARK** | Plataforma B2B con catálogo, comparador, presupuestos y asistencia contextual. | Next.js, PostgreSQL, pgvector, RAG e IA local. |
+| **JURIDIA** | Sistema RAG jurídico con respuestas trazables y referencias al BOE. | Python, PostgreSQL, Qdrant, RAG y Docker. |
+| **Transcriptor con IA** | Audio, transcripciones e informes estructurados con procesamiento asíncrono. | FastAPI, React, PostgreSQL, Whisper y LLM. |
 
-Además del catálogo, la propia landing comunica los pilares de la marca: software industrial, IA privada, trazabilidad, seguridad, despliegue local y escalabilidad sobre infraestructura propia del cliente.
+Además del catálogo, la landing comunica los pilares de mi perfil: producto Full Stack, IA aplicada, datos, automatización, despliegue cloud o local y escalabilidad.
 
 ## Arquitectura del sistema
 
-El proyecto sigue una arquitectura de portal SPA con API ligera de metadatos y autenticación centralizada. El frontend renderiza toda la experiencia pública, la API devuelve el catálogo y su estado en tiempo real, y Keycloak resuelve el acceso federado al resto de aplicaciones del ecosistema.
+El proyecto sigue una arquitectura de portal SPA con API ligera de metadatos y autenticación centralizada. El frontend renderiza toda la experiencia pública, la API devuelve el catálogo y su estado en tiempo real, y Keycloak resuelve el acceso federado al resto de aplicaciones del portfolio.
 
 ### Patrón general
 
@@ -98,10 +95,10 @@ El proyecto sigue una arquitectura de portal SPA con API ligera de metadatos y a
 
 ```mermaid
 flowchart LR
-		U[Visitante o cliente] --> W[Home Tanian<br/>React + Vite SPA]
+		U[Visitante o cliente] --> W[Portfolio Carlos Revert<br/>React + Vite SPA]
 		W -->|check-sso / login / logout| K[Keycloak OIDC]
 		W -->|GET /api/apps| A[FastAPI API]
-		A -->|health checks asíncronos| P[Proyectos del ecosistema]
+		A -->|health checks asíncronos| P[Proyectos del portfolio]
 		A -->|apps + status| W
 		W -->|Acceso autenticado| P
 
@@ -155,7 +152,7 @@ flowchart LR
 
 ### 1. Qué comunica la web
 
-La home está construida como un recorrido narrativo. Empieza con una propuesta de valor muy directa, continúa con una explicación de quién es Tanian, expone servicios y metodología, muestra el stack tecnológico y termina en el catálogo de soluciones reales. No es una web de marketing vacía: cada bloque prepara al visitante para entender por qué existen las aplicaciones que se enseñan al final.
+La home está construida como un recorrido narrativo. Empieza con una propuesta de valor muy directa, continúa con una explicación de quién es Carlos Revert, expone servicios y metodología, muestra el stack tecnológico y termina en el catálogo de soluciones reales. No es una web de marketing vacía: cada bloque prepara al visitante para entender por qué existen los proyectos que se enseñan al final.
 
 ### 2. Flujo de autenticación
 
@@ -203,7 +200,7 @@ Usa `.env.example` como base y ajusta los valores a tu entorno real.
 | --- | --- | --- | --- |
 | `VITE_KEYCLOAK_URL` | Frontend | Sí | URL base de la instancia de Keycloak. |
 | `VITE_KEYCLOAK_REALM` | Frontend | Sí | Realm activo para el portal y el SSO. |
-| `VITE_KEYCLOAK_CLIENT_ID` | Frontend | Sí | Client público registrado para Home Tanian. |
+| `VITE_KEYCLOAK_CLIENT_ID` | Frontend | Sí | Client público registrado para Portfolio Carlos Revert. |
 | `VITE_API_BASE_URL` | Frontend | Recomendado | Base URL preferida para resolver `/api` fuera del mismo dominio. |
 | `BACKEND_ALLOWED_ORIGINS` | Backend | Sí | Lista de orígenes permitidos por CORS para la API. |
 

@@ -18,22 +18,22 @@ const methodologySteps = [
   {
     number: '01',
     title: 'Análisis',
-    description: 'Estudiamos los flujos de trabajo de tu empresa para detectar cuellos de botella, errores recurrentes y oportunidades de mejora.',
+    description: 'Entiendo el producto, sus usuarios y sus procesos para detectar fricción, límites técnicos y oportunidades con impacto real.',
   },
   {
     number: '02',
     title: 'Diseño',
-    description: 'Diseñamos soluciones a medida con las tecnologías más adecuadas para cada problema detectado.',
+    description: 'Defino una solución viable, una arquitectura mantenible y el camino más corto entre la necesidad y el resultado.',
   },
   {
     number: '03',
     title: 'Implementación',
-    description: 'Desarrollamos e instalamos las herramientas en tu infraestructura propia, garantizando privacidad y control total.',
+    description: 'Construyo frontend, backend, datos e integraciones de IA como partes de un mismo producto, listo para desplegar.',
   },
   {
     number: '04',
     title: 'Escalado',
-    description: 'El hardware instalado es la base para escalar tecnológicamente. Nuevas necesidades se integran aprovechando lo existente.',
+    description: 'Mido, optimizo y amplío el sistema para incorporar más usuarios, automatizaciones y nuevas necesidades.',
   },
 ]
 
@@ -43,26 +43,26 @@ const methodologySteps = [
 const techCapabilities = [
   {
     icon: Brain,
-    title: 'Inteligencia Artificial',
-    items: ['Modelos LLM locales', 'Speech-to-Text / Text-to-Speech', 'Generación de imágenes', 'Identificación de patrones', 'OCR y parseo inteligente'],
+    title: 'IA aplicada y RAG',
+    items: ['LLM locales y proveedores cloud', 'RAG y recuperación semántica', 'Speech-to-Text y Text-to-Speech', 'Agentes y herramientas', 'OCR y procesamiento documental'],
     gradient: 'from-cyan-500/10 to-blue-500/5',
   },
   {
     icon: Database,
-    title: 'Bases de Datos',
-    items: ['SQL y NoSQL', 'Bases de datos vectoriales', 'Gestión avanzada de datos', 'Migración y optimización', 'Backups y recuperación'],
+    title: 'Producto Full Stack',
+    items: ['React, Next.js y TypeScript', 'Python, FastAPI y APIs REST', 'Interfaces responsive y accesibles', 'Arquitecturas modulares', 'Procesos asíncronos'],
     gradient: 'from-violet-500/10 to-purple-500/5',
   },
   {
     icon: Workflow,
-    title: 'Trazabilidad',
-    items: ['Software de trazabilidad industrial', 'Verificación paso a paso', 'Control de calidad en tiempo real', 'Blockchain para seguridad', 'Flujo de datos optimizado'],
+    title: 'Datos y contexto',
+    items: ['PostgreSQL, MySQL y SQLite', 'Qdrant y pgvector', 'Ingesta, limpieza y chunking', 'Embeddings y búsqueda híbrida', 'Respuestas trazables a sus fuentes'],
     gradient: 'from-emerald-500/10 to-green-500/5',
   },
   {
     icon: Server,
-    title: 'Infraestructura Local',
-    items: ['Servidores dedicados en tu empresa', 'Soberanía total de datos', 'Modelos de IA en local', 'Hardware escalable', 'Independencia de servicios cloud'],
+    title: 'Infraestructura y operaciones',
+    items: ['Docker y Docker Compose', 'Linux y Proxmox', 'Despliegues cloud o self-hosted', 'TLS, dominios y proxy inverso', 'Automatización con n8n y APIs'],
     gradient: 'from-amber-500/10 to-orange-500/5',
   },
 ]
@@ -124,14 +124,14 @@ export function HomePage() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500 to-cyan-400">
             <Layers className="h-4 w-4 text-slate-950" />
           </div>
-          <p className="text-sm font-semibold tracking-wide text-slate-200">Tanian</p>
+          <p className="text-sm font-semibold tracking-wide text-slate-200">Carlos Revert</p>
         </div>
 
         {/* Central Badge */}
         <div className="pointer-events-none absolute inset-x-0 top-2 flex items-center justify-center pt-6 sm:pt-6">
           <div className="pointer-events-auto hidden items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 text-[10px] font-medium tracking-wider uppercase text-cyan-300 sm:flex">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
-            Software Industrial · IA · Trazabilidad · BlockChain
+            Full Stack · IA aplicada · RAG · Infraestructura
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
           </div>
         </div>
@@ -172,7 +172,7 @@ export function HomePage() {
       {/* ── Section Divider ── */}
       <div className="section-divider mx-auto max-w-4xl" />
 
-      {/* ── Quiénes somos ── */}
+      {/* ── Perfil profesional ── */}
       <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -182,16 +182,15 @@ export function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Quiénes somos</span>
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Perfil profesional</span>
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Transformamos procesos industriales con tecnología
+              Una visión completa para mejorar tu producto
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-              Somos especialistas en detectar los puntos débiles de empresas y fábricas —desde cuellos de botella en producción
-              hasta fallos de seguridad en datos— y crear herramientas personalizadas que resuelven cada problema de raíz.
-              Nuestro enfoque combina <strong className="text-slate-200">inteligencia artificial, software de trazabilidad
-                y gestión avanzada de datos</strong> para que cada paso de tu proceso esté verificado, controlado
-              y libre de errores que detengan la producción.
+              Trabajo sobre el ciclo completo: análisis, arquitectura, frontend, backend, datos, IA y despliegue.
+              Esto me permite entender un producto como un sistema y no como una suma de piezas. Puedo incorporarme para
+              resolver un reto concreto o acompañar su evolución de extremo a extremo, eligiendo entre <strong className="text-slate-200">servicios cloud,
+                modelos locales e infraestructura propia</strong> según la privacidad, el coste, la latencia y la escala que realmente necesita.
             </p>
           </motion.div>
         </div>
@@ -212,38 +211,38 @@ export function HomePage() {
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <ServiceBadge
               icon={Bot}
-              title="Ingeniería IA"
-              description="Modelos de lenguaje, visión artificial, reconocimiento de voz, OCR y agentes inteligentes ejecutados en local."
+              title="IA aplicada y sistemas RAG"
+              description="Convierto modelos, documentos y datos en asistentes útiles, trazables y conectados con el conocimiento real del negocio."
               gradient="from-cyan-500/10 to-blue-500/5"
             />
             <ServiceBadge
               icon={Blocks}
-              title="Blockchain y Trazabilidad"
-              description="Desarrollo sobre redes EVM para trazabilidad certificada, auditorías inmutables y confianza total en la cadena de datos."
+              title="Arquitectura y escalabilidad"
+              description="Diseño sistemas modulares que pueden crecer en usuarios, datos y funcionalidades sin hipotecar el producto."
               gradient="from-violet-500/10 to-purple-500/5"
             />
             <ServiceBadge
               icon={BriefcaseBusiness}
-              title="Software Empresarial"
-              description="Plataformas de alto rendimiento para gestión de producción, calidad, logística e integraciones entre sistemas."
+              title="Desarrollo Full Stack"
+              description="Construyo productos completos: interfaces, APIs, bases de datos, procesos asíncronos e integraciones externas."
               gradient="from-amber-500/10 to-orange-500/5"
             />
             <ServiceBadge
               icon={Server}
-              title="Infraestructura Local"
-              description="Instalación de servidores en tu empresa para ejecutar IA y software propio. Control total sin depender de la nube."
+              title="Cloud y self-hosted"
+              description="Despliego en la nube o en infraestructura privada, con Docker, observabilidad y control sobre aplicaciones y datos."
               gradient="from-emerald-500/10 to-green-500/5"
             />
             <ServiceBadge
               icon={Phone}
-              title="Asistentes Telefónicos IA"
-              description="Configuración de asistentes de voz con IA para atender llamadas, informar sobre stock, desviar comunicaciones y más."
+              title="Frontend y experiencia de usuario"
+              description="Hago accesible la complejidad con interfaces responsive, claras y orientadas a la tarea que el usuario necesita completar."
               gradient="from-pink-500/10 to-rose-500/5"
             />
             <ServiceBadge
               icon={ShieldCheck}
-              title="Seguridad y Backups"
-              description="Auditoría de vulnerabilidades, configuración de sistemas de respaldo y protección avanzada de la infraestructura."
+              title="Automatización e integraciones"
+              description="Conecto APIs, agentes y flujos para eliminar tareas repetitivas y convertir información dispersa en procesos fiables."
               gradient="from-sky-500/10 to-blue-500/5"
             />
           </div>
@@ -264,9 +263,9 @@ export function HomePage() {
             className="text-center"
           >
             <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Metodología</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Cómo trabajamos</h2>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Cómo trabajo</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              Un proceso claro y directo para llevar tu empresa al siguiente nivel tecnológico.
+              Un proceso claro para avanzar desde un problema bien entendido hasta un producto preparado para evolucionar.
             </p>
           </motion.div>
 
@@ -306,9 +305,9 @@ export function HomePage() {
             className="text-center"
           >
             <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Tecnología</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Nuestro arsenal tecnológico</h2>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Tecnología al servicio del producto</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              Herramientas robustas y de vanguardia que nos permiten crear soluciones fiables y escalables para cualquier sector.
+              Elijo cada herramienta por su encaje con el problema, no por tendencia: calidad, mantenimiento, privacidad, coste y escala marcan la decisión.
             </p>
           </motion.div>
 
@@ -364,14 +363,13 @@ export function HomePage() {
                 Tu servidor. Tus datos. Tu control.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-400 sm:text-lg">
-                En la mayoría de proyectos, instalamos un <strong className="text-slate-200">servidor local</strong> en
-                las instalaciones de la empresa. Este servidor ejecuta los modelos de IA, las bases de datos y todo el software
-                personalizado, garantizando que <strong className="text-slate-200">ningún dato sale de tu empresa</strong>.
+                No todos los productos necesitan la misma infraestructura. Diseño soluciones <strong className="text-slate-200">cloud,
+                  híbridas o completamente locales</strong> según el nivel de privacidad, rendimiento y control que requiere cada caso.
+                Cuando los datos deben permanecer dentro de la organización, puedo desplegar modelos, bases de datos y aplicaciones en infraestructura propia.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-400 sm:text-lg">
-                Una vez instalado el hardware, se convierte en la base para <strong className="text-slate-200">escalar
-                  tecnológicamente</strong>: cuando surjan nuevas necesidades o aparezcan nuevas tecnologías, podremos
-                integrarlas aprovechando la infraestructura existente. Y si fuera necesario, el hardware también se puede ampliar.
+                La arquitectura queda preparada para <strong className="text-slate-200">crecer sin empezar de cero</strong>:
+                incorporar nuevas herramientas, automatizar procesos, ampliar capacidad o integrar otros modelos aprovechando lo que ya funciona.
               </p>
             </div>
           </motion.div>
@@ -391,11 +389,10 @@ export function HomePage() {
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Catálogo</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Nuestras soluciones en acción</h2>
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Proyectos</span>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Lo que sé hacer, en producción</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              Explora las herramientas que ya hemos desarrollado. Cada una es totalmente personalizable
-              y adaptable a las necesidades específicas de tu empresa.
+              Estos productos muestran cómo combino desarrollo, IA, datos e infraestructura para resolver necesidades concretas y construir experiencias completas.
             </p>
           </motion.div>
 
@@ -428,15 +425,18 @@ export function HomePage() {
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500 to-cyan-400">
               <Layers className="h-3.5 w-3.5 text-slate-950" />
             </div>
-            <span className="text-sm font-semibold text-slate-300">Tanian</span>
+            <span className="text-sm font-semibold text-slate-300">Carlos Revert</span>
             <span className="text-sm text-slate-500">© 2026</span>
           </div>
           <nav className="flex items-center gap-6 text-sm text-slate-400">
-            <a href="mailto:contact@tanian.net" className="transition hover:text-slate-200">
+            <a href="mailto:revert.developer@gmail.com" className="transition hover:text-slate-200">
               Contacto
             </a>
-            <a href="https://status.tanian.net" target="_blank" rel="noreferrer" className="transition hover:text-slate-200">
-              Estado
+            <a href="https://github.com/RevertDeveloper" target="_blank" rel="noreferrer" className="transition hover:text-slate-200">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/carlos-revert/" target="_blank" rel="noreferrer" className="transition hover:text-slate-200">
+              LinkedIn
             </a>
           </nav>
         </div>
