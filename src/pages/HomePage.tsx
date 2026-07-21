@@ -454,7 +454,7 @@ export function HomePage() {
             <span className="text-sm font-semibold text-slate-300">Carlos Revert</span>
             <span className="text-sm text-slate-500">© 2026</span>
           </div>
-          <nav className="flex items-center gap-6 text-sm text-slate-400">
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-slate-400">
             <a href="mailto:revert.developer@gmail.com" className="transition hover:text-slate-200">
               Contacto
             </a>
