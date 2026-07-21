@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import {
   Blocks, Server, Database, Brain, Workflow, Layers, ArrowRight,
   BrainCircuit, Network, CodeXml, MonitorSmartphone, GitBranch, PhoneCall, BotMessageSquare,
+  CircleGauge, Crown,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Hero } from '../components/Hero.tsx'
@@ -373,6 +374,37 @@ export function HomePage() {
       {/* ── Section Divider ── */}
       <div className="section-divider mx-auto max-w-4xl" />
 
+      {/* ── Planes de uso ── */}
+      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Cuenta compartida</span>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Un acceso para todas las herramientas</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
+              Puedes explorar todas las aplicaciones libremente. Solo las acciones que ejecutan inteligencia artificial consumen saldo diario.
+            </p>
+          </div>
+
+          <div className="mt-12 grid border-y border-slate-800/70 sm:grid-cols-2 sm:divide-x sm:divide-slate-800/70">
+            <div className="px-4 py-8 sm:px-10">
+              <CircleGauge className="h-7 w-7 text-cyan-400" aria-hidden="true" />
+              <h3 className="mt-4 text-xl font-semibold text-white">FREE</h3>
+              <p className="mt-2 text-3xl font-bold text-white">5 <span className="text-base font-normal text-slate-400">interacciones diarias</span></p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">El saldo se comparte entre Juridia, CLARK y Transcriptor.</p>
+            </div>
+            <div className="px-4 py-8 sm:px-10">
+              <Crown className="h-7 w-7 text-amber-400" aria-hidden="true" />
+              <h3 className="mt-4 text-xl font-semibold text-white">PREMIUM</h3>
+              <p className="mt-2 text-3xl font-bold text-white">20 <span className="text-base font-normal text-slate-400">interacciones diarias</span></p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">Durante esta fase, el plan Premium se asigna manualmente desde la administración.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section Divider ── */}
+      <div className="section-divider mx-auto max-w-4xl" />
+
       {/* ── Catálogo de Apps ── */}
       <section ref={appCatalogRef} className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
@@ -431,6 +463,12 @@ export function HomePage() {
             </a>
             <a href="https://www.linkedin.com/in/carlos-revert/" target="_blank" rel="noreferrer" className="transition hover:text-slate-200">
               LinkedIn
+            </a>
+            <a href="https://cuenta.carlosrevert.es/privacy/" className="transition hover:text-slate-200">
+              Privacidad
+            </a>
+            <a href="https://cuenta.carlosrevert.es/terms/" className="transition hover:text-slate-200">
+              Términos
             </a>
           </nav>
         </div>
