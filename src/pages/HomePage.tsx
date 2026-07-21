@@ -9,6 +9,7 @@ import { ServiceBadge } from '../components/ServiceBadge.tsx'
 import { AppCard } from '../components/AppCard.tsx'
 import { getApps } from '../lib/api.ts'
 import { usePortalStore } from '../store/usePortalStore.ts'
+import { AccountNav } from '../components/AccountNav.tsx'
 
 /* ------------------------------------------------------------------ */
 /*  Methodology steps for the process section                          */
@@ -132,6 +133,8 @@ export function HomePage() {
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
           </div>
         </div>
+
+        <AccountNav />
 
       </header>
 

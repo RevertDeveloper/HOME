@@ -8,6 +8,7 @@
     "dev:api": "cd api && uvicorn index:app --reload --port 10001",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "vitest run",
     "preview": "vite preview --host 0.0.0.0 --port 10000 --strictPort"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vitest": "^4.1.10"
   }
 }
