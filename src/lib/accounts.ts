@@ -46,7 +46,7 @@ export async function logoutAccount() {
 }
 
 export function accountUrl(path: 'login' | 'register' | 'account') {
-  const url = new URL(`/${path}/`, ACCOUNTS_ORIGIN)
+  const url = new URL(path === 'account' ? '/' : `/${path}/`, ACCOUNTS_ORIGIN)
   if (path !== 'account') url.searchParams.set('next', window.location.href)
   return url.toString()
 }

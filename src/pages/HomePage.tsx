@@ -11,6 +11,7 @@ import { AppCard } from '../components/AppCard.tsx'
 import { getApps } from '../lib/api.ts'
 import { usePortalStore } from '../store/usePortalStore.ts'
 import { AccountNav } from '../components/AccountNav.tsx'
+import { AppSwitcher } from '../components/AppSwitcher.tsx'
 
 /* ------------------------------------------------------------------ */
 /*  Methodology steps for the process section                          */
@@ -120,9 +121,7 @@ export function HomePage() {
       {/* ── Header ── */}
       <header className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-14">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500 to-cyan-400">
-            <Layers className="h-4 w-4 text-slate-950" />
-          </div>
+          <AppSwitcher />
           <p className="text-sm font-semibold tracking-wide text-slate-200">Carlos Revert</p>
         </div>
 

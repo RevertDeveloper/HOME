@@ -4,6 +4,10 @@ import { accountUrl, loadAccount } from './accounts'
 afterEach(() => vi.unstubAllGlobals())
 
 describe('accounts client', () => {
+  it('opens the canonical account page at the origin root', () => {
+    expect(accountUrl('account')).toBe('https://cuenta.carlosrevert.es/')
+  })
+
   it('preserves the current page when opening login', () => {
     vi.stubGlobal('window', { location: { href: 'https://carlosrevert.es/#apps' } })
 

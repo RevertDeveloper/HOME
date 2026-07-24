@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, ZoomIn, X, CheckCircle2 } from 'lucide-react'
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { motion } from 'framer-motion'
+import { ExternalLink, ZoomIn, X, CheckCircle2, Minus, Plus, RotateCcw } from 'lucide-react'
 import type { AppItem } from '../types/app.ts'
 
 // Importar imágenes locales para asegurar que Vite las procese y hashee para producción
@@ -71,6 +71,91 @@ const appHighlights: Record<string, string[]> = {
     'Modelos de IA ejecutados localmente',
     'Privacidad y control total de los datos',
   ],
+}
+
+const MIN_ZOOM = 1
+const MAX_ZOOM = 4
+const ZOOM_STEP = 0.5
+
+interface ImageLightboxProps { imageUrl: string; appName: string; open: boolean; onClose: () => void }
+
+function ImageLightbox({ imageUrl, appName, open, onClose }: ImageLightboxProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const pointers = useRef(new Map<number, { x: number; y: number }>())
+  const pinch = useRef<{ distance: number; zoom: number } | null>(null)
+  const drag = useRef<{ x: number; y: number; originX: number; originY: number } | null>(null)
+  const [zoom, setZoom] = useState(MIN_ZOOM)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (open && !dialog.open) {
+      dialog.showModal()
+      const oldOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      return () => { document.body.style.overflow = oldOverflow }
+    }
+    if (!open && dialog.open) dialog.close()
+  }, [open])
+
+  const closeLightbox = () => {
+    setZoom(MIN_ZOOM)
+    setPosition({ x: 0, y: 0 })
+    pointers.current.clear()
+    pinch.current = null
+    drag.current = null
+    onClose()
+  }
+
+  const setZoomSafely = (value: number) => {
+    const next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, value))
+    setZoom(next)
+    if (next === MIN_ZOOM) setPosition({ x: 0, y: 0 })
+  }
+  const pointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId)
+    pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (pointers.current.size === 2) {
+      const [a, b] = [...pointers.current.values()]
+      pinch.current = { distance: Math.hypot(a.x - b.x, a.y - b.y), zoom }
+      drag.current = null
+    } else if (zoom > MIN_ZOOM) {
+      drag.current = { x: event.clientX, y: event.clientY, originX: position.x, originY: position.y }
+    }
+  }
+  const pointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!pointers.current.has(event.pointerId)) return
+    pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (pinch.current && pointers.current.size === 2) {
+      const [a, b] = [...pointers.current.values()]
+      setZoomSafely(pinch.current.zoom * (Math.hypot(a.x - b.x, a.y - b.y) / pinch.current.distance))
+    } else if (drag.current && zoom > MIN_ZOOM) {
+      setPosition({ x: drag.current.originX + event.clientX - drag.current.x, y: drag.current.originY + event.clientY - drag.current.y })
+    }
+  }
+  const pointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    pointers.current.delete(event.pointerId)
+    if (pointers.current.size < 2) pinch.current = null
+    if (!pointers.current.size) drag.current = null
+  }
+
+  return (
+    <dialog ref={dialogRef} aria-label={`Vista ampliada de ${appName}`} onCancel={(event) => { event.preventDefault(); closeLightbox() }} onClose={closeLightbox} className="m-0 h-full max-h-none w-full max-w-none overflow-hidden bg-slate-950/95 p-0 text-slate-100 backdrop:bg-slate-950/95">
+      <div className="relative flex h-[100dvh] w-full items-center justify-center p-4 sm:p-8">
+        <p className="pointer-events-none absolute inset-x-0 top-4 z-10 text-center text-xs text-slate-300">{appName} - {Math.round(zoom * 100)}%</p>
+        <div role="application" aria-label="Area de zoom de la imagen" className="flex h-full w-full touch-none select-none items-center justify-center overflow-hidden overscroll-contain" onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp} onWheel={(event) => { event.preventDefault(); setZoomSafely(zoom + (event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP)) }} onDoubleClick={() => setZoomSafely(zoom === MIN_ZOOM ? 2.5 : MIN_ZOOM)}>
+          <img src={imageUrl} alt={`${appName} - vista ampliada`} draggable={false} className="pointer-events-none max-h-[calc(100dvh-8rem)] max-w-full rounded-xl object-contain shadow-2xl" style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${zoom})` }} />
+        </div>
+        <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1 rounded-2xl border border-slate-700/80 bg-slate-900/90 p-1.5 shadow-2xl backdrop-blur">
+          <button type="button" aria-label="Reducir zoom" disabled={zoom === MIN_ZOOM} onClick={() => setZoomSafely(zoom - ZOOM_STEP)} className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-200 transition hover:bg-slate-700 disabled:opacity-35"><Minus className="h-5 w-5" aria-hidden="true" /></button>
+          <button type="button" aria-label="Restablecer zoom" onClick={() => { setZoomSafely(MIN_ZOOM); setPosition({ x: 0, y: 0 }) }} className="flex h-11 min-w-14 items-center justify-center rounded-xl px-2 text-xs font-semibold text-slate-300 transition hover:bg-slate-700"><RotateCcw className="mr-1.5 h-4 w-4" aria-hidden="true" />{Math.round(zoom * 100)}%</button>
+          <button type="button" aria-label="Aumentar zoom" disabled={zoom === MAX_ZOOM} onClick={() => setZoomSafely(zoom + ZOOM_STEP)} className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-200 transition hover:bg-slate-700 disabled:opacity-35"><Plus className="h-5 w-5" aria-hidden="true" /></button>
+        </div>
+        <button type="button" aria-label="Cerrar imagen" onClick={closeLightbox} className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-slate-700/80 bg-slate-900/90 text-slate-200 shadow-lg backdrop-blur transition hover:bg-slate-700"><X className="h-5 w-5" aria-hidden="true" /></button>
+      </div>
+    </dialog>
+  )
 }
 
 export function AppCard({ app }: AppCardProps) {
@@ -239,43 +324,7 @@ export function AppCard({ app }: AppCardProps) {
         </div>
       </motion.article>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxOpen && resolvedImageUrl && (
-          <motion.div
-            key="lightbox"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
-            onClick={() => setLightboxOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.88, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.88, opacity: 0 }}
-              transition={{ duration: 0.28, ease: 'easeOut' }}
-              className="relative max-h-[90vh] max-w-[95vw] overflow-hidden rounded-2xl border border-slate-700 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={resolvedImageUrl}
-                alt={`${app.name} – vista ampliada`}
-                className="block max-h-[90vh] max-w-[95vw] object-contain"
-              />
-              <button
-                type="button"
-                aria-label="Cerrar imagen"
-                onClick={() => setLightboxOpen(false)}
-                className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900/80 text-slate-200 backdrop-blur transition hover:bg-slate-700"
-              >
-                <X className="h-5 w-5" aria-hidden="true" />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {resolvedImageUrl ? <ImageLightbox imageUrl={resolvedImageUrl} appName={app.name} open={lightboxOpen} onClose={() => setLightboxOpen(false)} /> : null}
     </>
   )
 }
