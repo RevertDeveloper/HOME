@@ -48,21 +48,21 @@ const categoryAccents: Record<AppItem['category'], { border: string; badge: stri
 // Highlights por app para mostrar ventajas clave
 const appHighlights: Record<string, string[]> = {
   'asistente-juridico': [
-    'Más de 12.000 disposiciones y 600.000 artículos',
+    '12.000+ disposiciones y 600.000 artículos',
     'Cerca de 700.000 vectores indexados',
+    'Ingesta, chunking y recuperación vectorial',
     'Respuestas trazables hasta las fuentes del BOE',
-    'PostgreSQL y Qdrant como base documental',
   ],
   'transcriptor': [
     'Grabación y subida de audio desde el navegador',
-    'Whisper y LLM sobre infraestructura propia',
-    'Procesamiento asíncrono de trabajos largos',
+    'Whisper y LLM sobre infraestructura self-hosted',
+    'Cola para procesar trabajos largos de forma asíncrona',
     'Retención controlada y privacidad del dato',
   ],
   'clark': [
     'Catálogo, filtros y comparador responsive',
+    'Navegación asistida por IA y RAG contextual',
     'Flujo B2B orientado a solicitudes de presupuesto',
-    'Asistente RAG con navegación contextual',
     'Next.js, PostgreSQL, pgvector e IA local',
   ],
   'chat-ia-local': [

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "asistente-juridico",
+    "name": "Asistente Jurídico",
+    "short_description": "RAG legal de alta densidad para consultar normativa española con fuentes verificables.",
+    "description": "Construí **Asistente Jurídico** para convertir un corpus jurídico masivo en respuestas útiles sin perder la trazabilidad. El sistema trabaja con más de **12.000 disposiciones**, **600.000 artículos** y cerca de **700.000 vectores indexados**.\n\nLa arquitectura combina PostgreSQL como fuente documental, Qdrant para recuperación vectorial y un pipeline de ingesta que normaliza, enriquece y expande cada consulta antes de recuperar los artículos relevantes. Cada respuesta enlaza a la fuente oficial del **BOE**.\n\nEs una muestra de cómo diseño sistemas RAG especializados donde la calidad depende del contexto, el chunking y la estrategia de recuperación, no solo del modelo utilizado.",
+    "tech": ["Python", "React", "PostgreSQL", "Qdrant", "RAG", "Docker"],
+    "url": "https://juridia.carlosrevert.es/",
+    "category": "ai",
+    "image_url": "/assets/rag-juridico.png",
+    "status": "online"
+  },
+  {
+    "id": "clark",
+    "name": "CLARK",
+    "short_description": "Catálogo B2B de maquinaria con navegación asistida por IA y RAG contextual.",
+    "description": "Desarrollé **CLARK** como un producto B2B para maquinaria de alto valor. La experiencia integra catálogo, filtros, fichas técnicas, comparador responsive, carrito y solicitudes de presupuesto en un único flujo.\n\nEl asistente utiliza **RAG y búsqueda semántica** para interpretar las necesidades del usuario, recomendar productos y dirigirlo hacia fichas y comparativas relevantes. La IA forma parte del descubrimiento y de la captación comercial, en lugar de aparecer como un widget aislado.\n\nEl proyecto conecta frontend, backend, datos e IA local para convertir especificaciones complejas en una experiencia clara y preparada para evolucionar.",
+    "tech": ["Next.js", "TypeScript", "PostgreSQL", "pgvector", "RAG", "LLM local"],
+    "url": "https://clark.carlosrevert.es/",
+    "category": "enterprise",
+    "image_url": "/assets/clark.png",
+    "status": "online"
+  },
+  {
+    "id": "transcriptor",
+    "name": "Transcriptor con IA",
+    "short_description": "Plataforma privada de transcripción y estructuración de audio sobre infraestructura propia.",
+    "description": "Desarrollé este producto para transformar grabaciones y archivos de audio en **información lista para utilizar**. Permite grabar desde el navegador, subir archivos, controlar trabajos largos y generar informes adaptados a distintos contextos.\n\nLa solución desacopla React, FastAPI, PostgreSQL y una cola de procesamiento. **Whisper** realiza la transcripción y un LLM estructura, resume o transforma el contenido, con persistencia por usuario y retención temporal controlada de los audios.\n\nEl resultado integra interfaz, API, tareas asíncronas, modelos de IA y despliegue self-hosted en un escenario donde la **privacidad y el control del dato** forman parte del producto.",
+    "tech": ["FastAPI", "React", "PostgreSQL", "Whisper", "LLM", "Docker"],
+    "url": "https://transcriptor.carlosrevert.es/",
+    "category": "ai",
+    "image_url": "/assets/transcriptor.png",
+    "status": "online"
+  },
+  {
+    "id": "chat-ia-local",
+    "name": "Chat IA Privada",
+    "short_description": "Demostración offline de un chat privado para utilizar modelos de IA locales.",
+    "description": "Esta aplicación está **actualmente offline**, pero muestra una forma sencilla de acercar la IA local a los equipos mediante **OpenUI**. Su interfaz de chat permite utilizar modelos de IA alojados en infraestructura propia con una experiencia familiar, similar a ChatGPT.\n\nAl ejecutar los modelos de forma local, las conversaciones y los datos sensibles permanecen bajo el control de la organización. Es una alternativa práctica para incorporar IA en el día a día sin renunciar a la **privacidad**, la soberanía del dato y la flexibilidad de elegir los modelos que mejor encajen en cada caso.\n\nLa solución puede ampliarse con herramientas personalizadas, acceso a bases de datos internas, generación de documentos, análisis de datos y automatizaciones.",
+    "tech": ["OpenUI", "IA local", "LLM", "Docker", "Infraestructura privada"],
+    "url": "https://chat.dev.tanian.net/auth?redirect=%2F",
+    "category": "ai",
+    "image_url": "/assets/chat-ia-local.png",
+    "status": "offline"
+  }
+]

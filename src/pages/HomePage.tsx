@@ -12,6 +12,7 @@ import { getApps } from '../lib/api.ts'
 import { usePortalStore } from '../store/usePortalStore.ts'
 import { AccountNav } from '../components/AccountNav.tsx'
 import { AppSwitcher } from '../components/AppSwitcher.tsx'
+import { SectionIndex } from '../components/SectionIndex.tsx'
 
 /* ------------------------------------------------------------------ */
 /*  Methodology steps for the process section                          */
@@ -19,23 +20,23 @@ import { AppSwitcher } from '../components/AppSwitcher.tsx'
 const methodologySteps = [
   {
     number: '01',
-    title: 'Análisis',
-    description: 'Entiendo el producto, sus usuarios y sus procesos para detectar fricción, límites técnicos y oportunidades con impacto real.',
+    title: 'Entender el problema',
+    description: 'Aclaro requisitos, usuarios, restricciones y objetivos antes de decidir qué merece construirse.',
   },
   {
     number: '02',
-    title: 'Diseño',
-    description: 'Defino una solución viable, una arquitectura mantenible y el camino más corto entre la necesidad y el resultado.',
+    title: 'Diseñar la solución',
+    description: 'Defino la arquitectura, el modelo de datos y las decisiones proporcionales a las restricciones reales.',
   },
   {
     number: '03',
-    title: 'Implementación',
-    description: 'Construyo frontend, backend, datos e integraciones de IA como partes de un mismo producto, listo para desplegar.',
+    title: 'Construir e integrar',
+    description: 'Construyo frontend, backend, IA, procesos asíncronos e integraciones como partes de un mismo producto.',
   },
   {
     number: '04',
-    title: 'Escalado',
-    description: 'Mido, optimizo y amplío el sistema para incorporar más usuarios, automatizaciones y nuevas necesidades.',
+    title: 'Operar y evolucionar',
+    description: 'Despliego, observo y mejoro el sistema para mantenerlo útil, estable y preparado para crecer.',
   },
 ]
 
@@ -45,26 +46,26 @@ const methodologySteps = [
 const techCapabilities = [
   {
     icon: Brain,
-    title: 'IA aplicada y RAG',
-    items: ['LLM locales y proveedores cloud', 'RAG y recuperación semántica', 'Speech-to-Text y Text-to-Speech', 'Agentes y herramientas', 'OCR y procesamiento documental'],
+    title: 'IA aplicada, RAG y agentes',
+    items: ['Modelos locales y proveedores cloud', 'RAG y recuperación trazable', 'Agentes, herramientas y MCPs', 'Speech-to-Text y Text-to-Speech', 'OCR y procesamiento documental'],
     gradient: 'from-cyan-500/10 to-blue-500/5',
   },
   {
     icon: Database,
     title: 'Producto Full Stack',
-    items: ['React, Next.js y TypeScript', 'Python, FastAPI y APIs REST', 'Interfaces responsive y accesibles', 'Arquitecturas modulares', 'Procesos asíncronos'],
+    items: ['Interfaces responsive y accesibles', 'React, Next.js y TypeScript', 'Python, FastAPI y APIs REST', 'Arquitecturas modulares', 'Procesos asíncronos'],
     gradient: 'from-violet-500/10 to-purple-500/5',
   },
   {
     icon: Workflow,
-    title: 'Datos y contexto',
-    items: ['PostgreSQL, MySQL y SQLite', 'Qdrant y pgvector', 'Ingesta, limpieza y chunking', 'Embeddings y búsqueda híbrida', 'Respuestas trazables a sus fuentes'],
+    title: 'Datos, búsqueda y contexto',
+    items: ['Ingesta, limpieza y chunking', 'Embeddings y recuperación semántica', 'PostgreSQL, MySQL y SQLite', 'Qdrant y pgvector', 'Respuestas trazables a sus fuentes'],
     gradient: 'from-emerald-500/10 to-green-500/5',
   },
   {
     icon: Server,
     title: 'Infraestructura y operaciones',
-    items: ['Docker y Docker Compose', 'Linux y Proxmox', 'Despliegues cloud o self-hosted', 'TLS, dominios y proxy inverso', 'Automatización con n8n y APIs'],
+    items: ['Docker y Docker Compose', 'Linux y Proxmox', 'Despliegues cloud o self-hosted', 'VPN, DNS, dominios y proxys', 'Automatización con n8n y APIs'],
     gradient: 'from-amber-500/10 to-orange-500/5',
   },
 ]
@@ -114,27 +115,31 @@ export function HomePage() {
 
   return (
     <main className="relative min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
+      <SectionIndex />
       {/* Ambient background gradients */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.12),transparent_50%),radial-gradient(ellipse_at_80%_20%,rgba(139,92,246,0.1),transparent_45%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(6,182,212,0.06),transparent_50%)]" />
 
       {/* ── Header ── */}
-      <header className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-14">
-        <div className="flex items-center gap-2">
+      <header className="sticky top-0 z-40 flex items-center justify-between border-b border-slate-800/60 bg-slate-950/80 px-3 py-4 backdrop-blur-xl sm:relative sm:z-10 sm:border-b-0 sm:bg-transparent sm:px-10 sm:py-6 sm:backdrop-blur-none lg:px-14">
+        <div className="flex min-w-0 items-center gap-1">
           <AppSwitcher />
-          <p className="text-sm font-semibold tracking-wide text-slate-200">Carlos Revert</p>
+          <p className="text-sm font-semibold tracking-wide whitespace-nowrap text-slate-200">Carlos Revert</p>
         </div>
 
         {/* Central Badge */}
         <div className="pointer-events-none absolute inset-x-0 top-2 flex items-center justify-center pt-6 sm:pt-6">
           <div className="pointer-events-auto hidden items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-1.5 text-[10px] font-medium tracking-wider uppercase text-cyan-300 sm:flex">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
-            Full Stack · IA aplicada · RAG · Infraestructura
+            Full Stack · IA aplicada · Modelos locales · Self-hosted
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 status-online" />
           </div>
         </div>
 
-        <AccountNav />
+        <div className="-mr-1 flex items-center gap-1">
+          <SectionIndex mobileInHeader />
+          <AccountNav />
+        </div>
 
       </header>
 
@@ -149,7 +154,7 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Perfil profesional ── */}
-      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="perfil" className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -158,22 +163,21 @@ export function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Perfil profesional</span>
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Arquitectura de software e Inteligecia Artificial</span>
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Una visión completa para mejorar tu producto
+              Una visión global del ciclo de vida del producto
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-400 sm:text-lg">
-              Trabajo sobre el ciclo completo: análisis, arquitectura, frontend, backend, datos, IA y despliegue.
-              Esto me permite entender un producto como un sistema y no como una suma de piezas. Puedo incorporarme para
-              resolver un reto concreto o acompañar su evolución de extremo a extremo, eligiendo entre <strong className="text-slate-200">servicios cloud,
-                modelos locales e infraestructura propia</strong> según la privacidad, el coste, la latencia y la escala que realmente necesita.
+              Trabajo sobre el ciclo completo: requisitos, arquitectura, datos, backend asíncrono, frontend, IA y despliegue.
+              Esto me permite entender un producto como un sistema y no como una suma de piezas. Elijo entre <strong className="text-slate-200">servicios cloud,
+                modelos locales e infraestructura </strong>propia según la privacidad, el coste, la latencia, la escala y el mantenimiento que exige cada caso.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* ── Servicios ── */}
-      <section className="relative z-10 px-6 py-16 sm:px-10 lg:px-14">
+      <section id="servicios" className="relative z-10 scroll-mt-24 px-6 py-16 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -181,56 +185,56 @@ export function HomePage() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Servicios</span>
-            <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Áreas de especialización</h2>
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Capacidades técnicas</span>
+            <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">Áreas de dominio técnico</h2>
           </motion.div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <ServiceBadge
               icon={BrainCircuit}
-              title="IA aplicada y sistemas RAG"
-              description="Convierto modelos, documentos y datos en asistentes útiles, trazables y conectados con el conocimiento real del negocio."
+              title="IA aplicada, RAG y agentes"
+              description="Construyo asistentes conectados a conocimiento real, con recuperación trazable, herramientas y flujos agénticos."
               gradient="from-cyan-500/10 to-blue-500/5"
             />
             <ServiceBadge
               icon={Network}
-              title="Arquitectura y escalabilidad"
-              description="Diseño sistemas modulares que pueden crecer en usuarios, datos y funcionalidades sin hipotecar el producto."
+              title="Arquitectura y evolución"
+              description="Diseño sistemas modulares y mantenibles, proporcionales a las restricciones reales de usuarios, datos y operación."
               gradient="from-violet-500/10 to-purple-500/5"
             />
             <ServiceBadge
               icon={CodeXml}
-              title="Desarrollo Full Stack"
-              description="Construyo productos completos: interfaces, APIs, bases de datos, procesos asíncronos e integraciones externas."
+              title="Desarrollo Full Stack y APIs"
+              description="Construyo interfaces, APIs, bases de datos, procesos asíncronos e integraciones como partes de un mismo producto."
               gradient="from-amber-500/10 to-orange-500/5"
             />
             <ServiceBadge
               icon={Server}
-              title="Cloud y self-hosted"
-              description="Despliego en la nube o en infraestructura privada, con Docker, observabilidad y control sobre aplicaciones y datos."
+              title="Infraestructura"
+              description="Despliego en cloud, entornos híbridos o infraestructura privada con Docker, observabilidad y control sobre el dato."
               gradient="from-emerald-500/10 to-green-500/5"
             />
             <ServiceBadge
               icon={MonitorSmartphone}
-              title="Frontend y experiencia de usuario"
-              description="Hago accesible la complejidad con interfaces responsive, claras y orientadas a la tarea que el usuario necesita completar."
+              title="Frontend y diseño UI/UX"
+              description="Hago accesible la complejidad con interfaces responsive, claras y orientadas a las tareas que el usuario necesita completar."
               gradient="from-pink-500/10 to-rose-500/5"
             />
             <ServiceBadge
               icon={GitBranch}
               title="Automatización e integraciones"
-              description="Conecto APIs, agentes y flujos para eliminar tareas repetitivas y convertir información dispersa en procesos fiables."
+              description="Conecto APIs, MCPs agentes y flujos para convertir información dispersa en procesos fiables y reducir tareas repetitivas."
               gradient="from-sky-500/10 to-blue-500/5"
             />
             <ServiceBadge
               icon={PhoneCall}
-              title="Asistente telefónico con ElevenLabs"
-              description="Diseño flujos que atienden llamadas y WhatsApp con IA, conectados a la información de la empresa, bases de datos y las herramientas necesarias para resolver cada consulta."
+              title="Voz y asistentes conectados"
+              description="Diseño flujos de voz, llamadas y WhatsApp conectados a la información de la empresa, sus bases de datos y las herramientas necesarias."
               gradient="from-rose-500/10 to-pink-500/5"
             />
             <ServiceBadge
               icon={BotMessageSquare}
-              title="Agentes autónomos y operaciones con IA"
-              description="Configuro Hermes Agent y OpenClaw —nivel Olympian en Hermes Agent— para ejecutar rutinas con cron, controlar información de forma autónoma y conectarse mediante gateways."
+              title="Agentes autónomos"
+              description="Configuro agentes, tareas programadas, herramientas y gateways para automatizar rutinas y operar información de forma controlada."
               gradient="from-indigo-500/10 to-violet-500/5"
             />
             <ServiceBadge
@@ -247,7 +251,7 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Metodología ── */}
-      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="metodologia" className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -289,7 +293,7 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Tecnologías ── */}
-      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="tecnologias" className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -342,7 +346,7 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Propuesta de valor (servidor local) ── */}
-      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="propuesta" className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -358,12 +362,12 @@ export function HomePage() {
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-400 sm:text-lg">
                 No todos los productos necesitan la misma infraestructura. Diseño soluciones <strong className="text-slate-200">cloud,
-                  híbridas o completamente locales</strong> según el nivel de privacidad, rendimiento y control que requiere cada caso.
-                Cuando los datos deben permanecer dentro de la organización, puedo desplegar modelos, bases de datos y aplicaciones en infraestructura propia.
+                  híbridas o completamente locales</strong> según la sensibilidad del dato, la latencia, el coste operativo y el nivel de control que requiere cada caso.
+                He operado modelos locales de hasta <strong className="text-slate-200">120B parámetros</strong> en servidores propios y flujos agénticos.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-400 sm:text-lg">
-                La arquitectura queda preparada para <strong className="text-slate-200">crecer sin empezar de cero</strong>:
-                incorporar nuevas herramientas, automatizar procesos, ampliar capacidad o integrar otros modelos aprovechando lo que ya funciona.
+                La arquitectura queda preparada para <strong className="text-slate-200">evolucionar sin empezar de cero</strong>:
+                incorporar herramientas, automatizar procesos, ampliar capacidad o sustituir modelos y proveedores aprovechando lo que ya funciona.
               </p>
             </div>
           </motion.div>
@@ -374,28 +378,28 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Planes de uso ── */}
-      <section className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="planes" className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Cuenta compartida</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Un acceso para todas las herramientas</h2>
+            <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Entorno interactivo de prueba</span>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Prueba las aplicaciones con datos y modelos reales</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              Puedes explorar todas las aplicaciones libremente. Solo las acciones que ejecutan inteligencia artificial consumen saldo diario.
+              Puedes explorar las aplicaciones libremente. El saldo diario limita las operaciones de IA para proteger la infraestructura compartida.
             </p>
           </div>
 
           <div className="mt-12 grid border-y border-slate-800/70 sm:grid-cols-2 sm:divide-x sm:divide-slate-800/70">
             <div className="px-4 py-8 sm:px-10">
               <CircleGauge className="h-7 w-7 text-cyan-400" aria-hidden="true" />
-              <h3 className="mt-4 text-xl font-semibold text-white">FREE</h3>
+              <h3 className="mt-4 text-xl font-semibold text-white">Acceso de demostración</h3>
               <p className="mt-2 text-3xl font-bold text-white">5 <span className="text-base font-normal text-slate-400">interacciones diarias</span></p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">El saldo se comparte entre Juridia, CLARK y Transcriptor.</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">5 interacciones diarias compartidas entre Juridia, CLARK y Transcriptor.</p>
             </div>
             <div className="px-4 py-8 sm:px-10">
               <Crown className="h-7 w-7 text-amber-400" aria-hidden="true" />
-              <h3 className="mt-4 text-xl font-semibold text-white">PREMIUM</h3>
+              <h3 className="mt-4 text-xl font-semibold text-white">Acceso de prueba ampliado</h3>
               <p className="mt-2 text-3xl font-bold text-white">20 <span className="text-base font-normal text-slate-400">interacciones diarias</span></p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">Durante esta fase, el plan Premium se asigna manualmente desde la administración.</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">20 interacciones diarias. Durante esta fase, se asigna manualmente desde la administración.</p>
             </div>
           </div>
         </div>
@@ -405,7 +409,7 @@ export function HomePage() {
       <div className="section-divider mx-auto max-w-4xl" />
 
       {/* ── Catálogo de Apps ── */}
-      <section ref={appCatalogRef} className="relative z-10 px-6 py-20 sm:px-10 lg:px-14">
+      <section id="proyectos" ref={appCatalogRef} className="relative z-10 scroll-mt-24 px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl">
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
@@ -415,9 +419,9 @@ export function HomePage() {
             className="text-center"
           >
             <span className="text-sm font-semibold uppercase tracking-widest text-cyan-400">Proyectos</span>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Lo que sé hacer, en producción</h2>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">Proyectos que conectan producto y tecnología</h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
-              Estos productos muestran cómo combino desarrollo, IA, datos e infraestructura para resolver necesidades concretas y construir experiencias completas.
+              Estos productos muestran cómo combino desarrollo, IA, datos e infraestructura para resolver problemas concretos y llevar una idea hasta una experiencia funcional.
             </p>
           </motion.div>
 

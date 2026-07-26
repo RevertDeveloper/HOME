@@ -21,11 +21,13 @@ export function ServiceBadge({ icon: Icon, title, description, gradient = 'from-
       <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
 
       <div className="relative">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700/60 bg-slate-800/80">
-          <Icon aria-hidden="true" className="h-5 w-5 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-700/60 bg-slate-800/80">
+            <Icon aria-hidden="true" className="h-5 w-5 text-cyan-400 transition-transform duration-300 group-hover:scale-110" />
+          </div>
+          <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
         </div>
-        <h3 className="mt-4 text-lg font-semibold text-slate-100">{title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">{description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-400">{description}</p>
       </div>
     </motion.article>
   )

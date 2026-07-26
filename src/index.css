@@ -54,6 +54,44 @@ a {
   background-clip: text;
 }
 
+/* The hero artwork dissolves into the page instead of reading as a separate card. */
+.hero-visual {
+  isolation: isolate;
+  filter: drop-shadow(0 24px 48px rgba(8, 145, 178, 0.12));
+}
+
+.hero-visual__glow {
+  position: absolute;
+  inset: 12% 8% 10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(34, 211, 238, 0.14), rgba(168, 85, 247, 0.1) 42%, transparent 72%);
+  filter: blur(42px);
+}
+
+.hero-visual__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2rem;
+  opacity: 0.96;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%), linear-gradient(180deg, transparent 0%, black 4%, black 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%), linear-gradient(180deg, transparent 0%, black 4%, black 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+
+  /* --- AJUSTES DE POSICIÓN --- */
+  margin-top: -2.5rem; /* Subir la imagen (prueba valores entre -0.5rem y -3rem) */
+  margin-bottom: -1rem; /* Opcional: añade/quita espacio por debajo */
+}
+
+@media (max-width: 640px) {
+  .hero-visual__image {
+    border-radius: 1.25rem;
+  }
+}
+
 /* -- Animated gradient border -- */
 @property --angle {
   syntax: '<angle>';
