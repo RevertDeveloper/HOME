@@ -3,7 +3,7 @@ import { ChevronDown, ExternalLink, Layers } from 'lucide-react'
 
 const apps = [
   { name: 'Juridia', url: 'https://juridia.carlosrevert.es/' },
-  { name: 'Clark', url: 'https://clark.carlosrevert.es/' },
+  { name: 'CLARK', url: 'https://clark.carlosrevert.es/' },
   { name: 'Transcriptor', url: 'https://transcriptor.carlosrevert.es/' },
 ]
 
