@@ -87,8 +87,30 @@ a {
 }
 
 @media (max-width: 640px) {
+  /*
+   * Safari/WebKit recreates the compositing layers for filters, blend modes and
+   * CSS masks while a pinch-zoom is in progress. Keeping all three on the
+   * large Hero bitmap can make the mobile tab restart, which looks like a
+   * continuous page refresh. On small screens we keep the artwork intact but
+   * render it as a single, stable layer so native zoom remains reliable.
+   */
+  .hero-visual {
+    filter: none;
+    isolation: auto;
+  }
+
+  .hero-visual__glow {
+    display: none;
+  }
+
   .hero-visual__image {
     border-radius: 1.25rem;
+    opacity: 1;
+    mix-blend-mode: normal;
+    -webkit-mask-image: none;
+    mask-image: none;
+    -webkit-mask-composite: initial;
+    mask-composite: initial;
   }
 }
 
