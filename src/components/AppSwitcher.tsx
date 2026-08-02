@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronDown, ExternalLink, Layers } from 'lucide-react'
+import { ChevronDown, ExternalLink, Github, Layers } from 'lucide-react'
 
-const apps = [
-  { name: 'Juridia', url: 'https://juridia.carlosrevert.es/' },
-  { name: 'CLARK', url: 'https://clark.carlosrevert.es/' },
-  { name: 'Transcriptor', url: 'https://transcriptor.carlosrevert.es/' },
+type AppDefinition = { name: string; url: string; icon: string | null }
+
+// Las rutas de favicon se sirven desde cada dominio para evitar duplicar assets entre repositorios.
+const apps: AppDefinition[] = [
+  { name: 'Juridia', url: 'https://juridia.carlosrevert.es/', icon: 'https://juridia.carlosrevert.es/favicon-32x32.png' },
+  { name: 'CLARK', url: 'https://clark.carlosrevert.es/', icon: 'https://clark.carlosrevert.es/favicon-32x32.png' },
+  { name: 'Transcriptor', url: 'https://transcriptor.carlosrevert.es/', icon: 'https://transcriptor.carlosrevert.es/favicon.svg' },
+  { name: 'GitHub', url: 'https://github.com/RevertDeveloper', icon: null },
 ]
+
+function AppIcon({ app }: { app: AppDefinition }) {
+  return app.icon
+    ? <img src={app.icon} alt="" className="h-5 w-5 rounded-md object-cover" />
+    : <Github className="h-5 w-5 text-slate-300" aria-hidden="true" />
+}
 
 export function AppSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
@@ -39,7 +49,7 @@ export function AppSwitcher() {
       </button>
       {isOpen && <div id="app-switcher-menu" role="menu" aria-label="Aplicaciones de Carlos Revert" className="absolute left-0 top-full z-30 mt-2 min-w-56 origin-top-left rounded-xl border border-slate-700/70 bg-slate-900/95 p-1.5 shadow-2xl shadow-slate-950/60 backdrop-blur-xl">
         <p className="px-3 pb-1.5 pt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">Aplicaciones</p>
-        {apps.map((app) => <a key={app.name} href={app.url} role="menuitem" className="group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-cyan-500/10 hover:text-cyan-200 focus-visible:bg-cyan-500/10 focus-visible:outline-none">{app.name}<ExternalLink className="h-3.5 w-3.5 text-slate-600 transition group-hover:text-cyan-400" aria-hidden="true" /></a>)}
+        {apps.map((app) => <a key={app.name} href={app.url} role="menuitem" className="group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-cyan-500/10 hover:text-cyan-200 focus-visible:bg-cyan-500/10 focus-visible:outline-none"><span className="flex items-center gap-2.5"><span className="flex h-5 w-5 items-center justify-center"><AppIcon app={app} /></span>{app.name}</span><ExternalLink className="h-3.5 w-3.5 text-slate-600 transition group-hover:text-cyan-400" aria-hidden="true" /></a>)}
       </div>}
     </div>
   )
