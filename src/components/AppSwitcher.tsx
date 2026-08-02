@@ -3,11 +3,11 @@ import { ChevronDown, ExternalLink, Github, Layers } from 'lucide-react'
 
 type AppDefinition = { name: string; url: string; icon: string | null }
 
-// Las rutas de favicon se sirven desde cada dominio para evitar duplicar assets entre repositorios.
+// Cada frontend incluye copias locales para funcionar con CSP/CORP y sin depender de otro dominio.
 const apps: AppDefinition[] = [
-  { name: 'Juridia', url: 'https://juridia.carlosrevert.es/', icon: 'https://juridia.carlosrevert.es/favicon-32x32.png' },
-  { name: 'CLARK', url: 'https://clark.carlosrevert.es/', icon: 'https://clark.carlosrevert.es/favicon-32x32.png' },
-  { name: 'Transcriptor', url: 'https://transcriptor.carlosrevert.es/', icon: 'https://transcriptor.carlosrevert.es/favicon.svg' },
+  { name: 'Juridia', url: 'https://juridia.carlosrevert.es/', icon: '/app-icons/juridia.png' },
+  { name: 'CLARK', url: 'https://clark.carlosrevert.es/', icon: '/app-icons/clark.png' },
+  { name: 'Transcriptor', url: 'https://transcriptor.carlosrevert.es/', icon: '/app-icons/transcriptor.svg' },
   { name: 'GitHub', url: 'https://github.com/RevertDeveloper', icon: null },
 ]
 
